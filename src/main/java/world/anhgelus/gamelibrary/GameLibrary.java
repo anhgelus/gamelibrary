@@ -15,6 +15,8 @@ public final class GameLibrary extends JavaPlugin {
 
         ConfigAPI.init(this);
 
+        this.generateConfigs();
+
         this.getLogger().info("GameLibrary has been loaded!");
     }
 
@@ -27,10 +29,11 @@ public final class GameLibrary extends JavaPlugin {
         return instance;
     }
 
-    private void generateConfig() {
+    private void generateConfigs() {
         final Config messages = ConfigAPI.getConfig("messages.yml");
         if (messages.isFirstLoad()) {
             MessageManager.generateConfig(messages);
         }
+        MessageManager.setupMessage(messages);
     }
 }

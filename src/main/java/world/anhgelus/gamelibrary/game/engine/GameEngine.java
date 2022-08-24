@@ -1,9 +1,13 @@
 package world.anhgelus.gamelibrary.game.engine;
 
+import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.engine.conditions.GeneralConditions;
 import world.anhgelus.gamelibrary.game.engine.conditions.StartConditions;
 import world.anhgelus.gamelibrary.game.engine.conditions.WinConditions;
+import world.anhgelus.gamelibrary.messages.Message;
+import world.anhgelus.gamelibrary.messages.MessageManager;
+import world.anhgelus.gamelibrary.util.SenderHelper;
 
 public class GameEngine {
     private final Game game;
@@ -25,48 +29,53 @@ public class GameEngine {
      * Start the game
      * @throws NullPointerException if the conditions was not set
      */
-    public void start() throws NullPointerException {
+    public void start(Player player) throws NullPointerException {
         if (startConditions == null || winConditions == null) {
             throw new NullPointerException("startConditions and winConditions cannot be null");
         }
         if (state != GameState.NOT_STARTED) {
-            throw new IllegalStateException("Game has already started");
+            SenderHelper.sendError(player, "The game is not not started.");
         }
         state = GameState.STARTING;
         startConditions.onStart(game);
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.start, game.getName(), player.getName()));
     }
 
     /**
      * End the game
      */
-    public void end() {
+    public void end(Player player) {
         if (state != GameState.RUNNING) {
-            throw new IllegalStateException("Game was not started");
+            SenderHelper.sendError(player, "The game is not running.");
         }
         state = GameState.ENDING;
         winConditions.onWin(game);
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.end, game.getName(), player.getName()));
+        state = GameState.NOT_STARTED;
     }
 
     /**
      * Pause the game
      */
-    public void pause() {
+    public void pause(Player player) {
         if (state != GameState.RUNNING) {
-            throw new IllegalStateException("Game was not started");
+            SenderHelper.sendError(player, "The game is not running.");
         }
         state = GameState.PAUSED;
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.pause, game.getName(), player.getName()));
         generalConditions.onPause(game);
     }
 
     /**
      * Resume the game
      */
-    public void resume() {
+    public void resume(Player player) {
         if (state != GameState.PAUSED) {
-            throw new IllegalStateException("Game was not paused");
+            SenderHelper.sendError(player, "The game is not paused.");
         }
         state = GameState.RUNNING;
         generalConditions.onResume(game);
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.resume, game.getName(), player.getName()));
     }
 
     public void setWinConditions(WinConditions winConditions) {
