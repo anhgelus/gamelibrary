@@ -17,6 +17,7 @@ public class Config {
 
     private File database = null;
     private FileConfiguration databaseConfig = null;
+    private boolean firstLoad = false;
 
     /**
      *
@@ -37,6 +38,7 @@ public class Config {
         if (!database.exists()) {
             if (database.getParentFile().exists()) database.getParentFile().mkdir();
             main.saveResource(name + ".yml", false);
+            firstLoad = true;
         }
     }
 
@@ -62,6 +64,7 @@ public class Config {
             logger.log(Level.SEVERE, "This is a bug, please report it to the developer", e);
             logger.warning(e.getMessage());
         }
+        firstLoad = false;
     }
 
     /**
@@ -76,5 +79,9 @@ public class Config {
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             this.databaseConfig.setDefaults(defaultConfig);
         }
+    }
+
+    public boolean isFirstLoad() {
+        return firstLoad;
     }
 }

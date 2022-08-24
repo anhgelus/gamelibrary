@@ -1,6 +1,8 @@
 package world.anhgelus.gamelibrary;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import world.anhgelus.gamelibrary.messages.MessageManager;
+import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.config.ConfigAPI;
 
 public final class GameLibrary extends JavaPlugin {
@@ -23,5 +25,12 @@ public final class GameLibrary extends JavaPlugin {
 
     public static GameLibrary getInstance() {
         return instance;
+    }
+
+    private void generateConfig() {
+        final Config messages = ConfigAPI.getConfig("messages.yml");
+        if (messages.isFirstLoad()) {
+            MessageManager.generateConfig(messages);
+        }
     }
 }
