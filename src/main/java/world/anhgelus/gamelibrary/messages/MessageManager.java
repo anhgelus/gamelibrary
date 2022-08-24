@@ -26,14 +26,14 @@ public class MessageManager {
      */
     public static void generateConfig(Config messageConfig) {
         final FileConfiguration config = messageConfig.get();
-        config.set("start", "&aGame &6%game% &ahas been started!");
-        config.set("start_creator", "&aGame &6%game% &ahas been started by &6%creator%&a!");
-        config.set("end", "&aGame &6%game% &ahas been stopped!");
-        config.set("end_creator", "&aGame &6%game% &ahas been stopped by &6%creator%&a!");
-        config.set("pause", "&aGame &6%game% &ahas been paused!");
-        config.set("pause_creator", "&aGame &6%game% &ahas been paused by &6%creator%&a!");
-        config.set("resume", "&aGame &6%game% &ahas been resumed!");
-        config.set("resume_creator", "&aGame &6%game% &ahas been resumed by &6%creator%&a!");
+        config.set("start", "&aGame &6%game% &ahas been started by &6%creator%&a!");
+        config.set("start_creator", "&aThe game &6%game% &ahas been started perfectly!");
+        config.set("end", "&aGame &6%game% &ahas been stopped perfectly!");
+        config.set("end_creator", "&aThe Game &6%game% &ahas been stopped perfectly!");
+        config.set("pause", "&aGame &6%game% &ahas been paused by &6%creator%&a!");
+        config.set("pause_creator", "&aThe game &6%game% &ahas been paused perfectly!");
+        config.set("resume", "&aThe game &6%game% &ahas been resumed by &6%creator%&a!");
+        config.set("resume_creator", "&aThe game &6%game% &ahas been resumed perfectly!");
         messageConfig.save();
     }
 
