@@ -1,0 +1,6 @@
+name: GameLibrary
+version: '${version}'
+main: world.anhgelus.gamelibrary.GameLibrary
+api-version: 1.19
+authors: [ "Anhgelus Morhtuuzh" ]
+prefix: GameLibrary
