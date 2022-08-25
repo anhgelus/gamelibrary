@@ -1,5 +1,6 @@
 package world.anhgelus.gamelibrary.game;
 
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import world.anhgelus.gamelibrary.game.engine.GameEngine;
 
@@ -7,6 +8,8 @@ public class Game {
     private final Plugin main;
     private final String name;
     private final GameEngine engine;
+
+    private static Game INSTANCE;
 
     /**
      *
@@ -17,38 +20,39 @@ public class Game {
         this.main = main;
         this.name = name;
         this.engine = new GameEngine(this);
+        INSTANCE = this;
     }
 
     /**
      * Start the game
      */
-    public void start() {
+    public void start(Player player) {
         main.getLogger().info("Game " + name + " has been started!");
-        engine.start();
+        engine.start(player);
     }
 
     /**
      * Pause the game
      */
-    public void pause() {
+    public void pause(Player player) {
         main.getLogger().info("Game " + name + " has been paused!");
-        engine.pause();
+        engine.pause(player);
     }
 
     /**
      * Resume the game
      */
-    public void resume() {
+    public void resume(Player player) {
         main.getLogger().info("Game " + name + " has been resumed!");
-        engine.resume();
+        engine.resume(player);
     }
 
     /**
      * End the game
      */
-    public void stop() {
+    public void stop(Player player) {
         main.getLogger().info("Game " + name + " has been stopped!");
-        engine.end();
+        engine.end(player);
     }
 
     public String getName() {
@@ -57,5 +61,12 @@ public class Game {
 
     public GameEngine getEngine() {
         return engine;
+    }
+
+    public static Game getInstance() throws NullPointerException {
+        if (INSTANCE == null) {
+            throw new NullPointerException("Game is null!");
+        }
+        return INSTANCE;
     }
 }

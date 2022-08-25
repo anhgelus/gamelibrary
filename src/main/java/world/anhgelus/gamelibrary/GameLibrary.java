@@ -3,8 +3,11 @@ package world.anhgelus.gamelibrary;
 import org.bukkit.plugin.java.JavaPlugin;
 import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.messages.MessageManager;
+import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.config.ConfigAPI;
+
+import java.util.HashMap;
 
 public final class GameLibrary extends JavaPlugin {
 
@@ -17,6 +20,7 @@ public final class GameLibrary extends JavaPlugin {
         ConfigAPI.init(this);
 
         this.generateConfigs();
+        this.generateVault();
         this.registerCommands();
 
         this.getLogger().info("GameLibrary has been loaded!");
@@ -41,5 +45,9 @@ public final class GameLibrary extends JavaPlugin {
 
     private void registerCommands() {
         // Nothing to do here now
+    }
+
+    private void generateVault() {
+        Vault.setVault(new HashMap<>());
     }
 }

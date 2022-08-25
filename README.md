@@ -10,9 +10,10 @@ A Spigot game library to create games mode easier.
 - Message Management (configuration file to modify message)
 - Send Message to Player Helper (send message to player, colors, broadcasts, etc)
 - Custom Game Subcommands (/game something)
+- Basic Game Subcommands (/game start, /game stop, /game pause, /game resume)
+- Vault to save some data
 
 ### Planned
-- Basic Game Subcommands (/game start, /game stop, /game pause, /game resume)
 - Team Management
 
 ## Technologies

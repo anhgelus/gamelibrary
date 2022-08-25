@@ -1,5 +1,6 @@
 package world.anhgelus.gamelibrary.game.commands;
 
+import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.game.commands.regular.PauseSubCmd;
 import world.anhgelus.gamelibrary.game.commands.regular.ResumeSubCmd;
 import world.anhgelus.gamelibrary.game.commands.regular.StartSubCmd;
@@ -10,9 +11,11 @@ import java.util.List;
 
 public class GameCommandManager {
     private final List<Subcommand> subcommands;
+    public final GameProperties gameProperties;
 
-    public GameCommandManager() {
-        subcommands = generateList();
+    public GameCommandManager(GameProperties properties) {
+        subcommands = generateList(properties);
+        gameProperties = properties;
     }
 
     /**
@@ -48,12 +51,12 @@ public class GameCommandManager {
      * Generate a list of subcommands
      * @return List of subcommands
      */
-    private static List<Subcommand> generateList() {
+    private static List<Subcommand> generateList(GameProperties properties) {
         final List<Subcommand> list = new ArrayList<>();
-        list.add(new StartSubCmd());
-        list.add(new StopSubCmd());
-        list.add(new PauseSubCmd());
-        list.add(new ResumeSubCmd());
+        list.add(new StartSubCmd(properties));
+        list.add(new StopSubCmd(properties));
+        list.add(new PauseSubCmd(properties));
+        list.add(new ResumeSubCmd(properties));
         return list;
     }
 }

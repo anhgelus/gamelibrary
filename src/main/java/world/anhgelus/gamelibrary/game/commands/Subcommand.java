@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary.game.commands;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.game.GameProperties;
 
 public abstract class Subcommand {
     /**
@@ -9,10 +10,12 @@ public abstract class Subcommand {
      */
     private final String identifier;
     private final String description;
+    protected final GameProperties properties;
 
-    public Subcommand(String identifier, String description) {
+    public Subcommand(String identifier, String description, GameProperties properties) {
         this.identifier = identifier;
         this.description = description;
+        this.properties = properties;
     }
 
     public String getIdentifier() {
