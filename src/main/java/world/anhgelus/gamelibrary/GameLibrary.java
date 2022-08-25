@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.config.ConfigAPI;
@@ -16,6 +17,7 @@ public final class GameLibrary extends JavaPlugin {
         ConfigAPI.init(this);
 
         this.generateConfigs();
+        this.registerCommands();
 
         this.getLogger().info("GameLibrary has been loaded!");
     }
@@ -35,5 +37,9 @@ public final class GameLibrary extends JavaPlugin {
             MessageManager.generateConfig(messages);
         }
         MessageManager.setupMessage(messages);
+    }
+
+    private void registerCommands() {
+        // Nothing to do here now
     }
 }
