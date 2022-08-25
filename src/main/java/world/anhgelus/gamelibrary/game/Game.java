@@ -8,6 +8,7 @@ public class Game {
     private final Plugin main;
     private final String name;
     private final GameEngine engine;
+    private GameProperties properties;
 
     private static Game INSTANCE;
 
@@ -21,6 +22,7 @@ public class Game {
         this.name = name;
         this.engine = new GameEngine(this);
         INSTANCE = this;
+        this.properties = new GameProperties(name);
     }
 
     /**
@@ -68,5 +70,9 @@ public class Game {
             throw new NullPointerException("Game is null!");
         }
         return INSTANCE;
+    }
+
+    public GameProperties getProperties() {
+        return properties;
     }
 }
