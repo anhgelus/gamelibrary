@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: GameLibrary - A Game Library for Spigot
+title: GameLibrary - Game Library for Spigot
 email: anhgelus.morhtuuzh@proton.me
 description: >- # this means to ignore newlines until "baseurl:"
   Documentations of the GameLibrary library and plugin for Spigot.
@@ -29,9 +29,11 @@ twitter_username:
 github_username:  anhgelus
 
 # Build settings
+#theme: pages-themes/cayman@v0.2.0
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
