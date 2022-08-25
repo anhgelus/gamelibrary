@@ -1,6 +1,8 @@
 # GameLibrary
 A Spigot game library to create games mode easier.
 
+[Documentations](https://anhgelus.github.io/gamelibrary/)
+
 ## Features
 
 ### Added
