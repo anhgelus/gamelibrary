@@ -29,7 +29,7 @@ twitter_username:
 github_username:  anhgelus
 
 # Build settings
-theme: pages-themes/cayman@v0.2.0
+theme: cayman
 #theme: minima
 plugins:
   - jekyll-feed
