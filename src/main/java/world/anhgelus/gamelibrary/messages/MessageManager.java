@@ -8,16 +8,18 @@ public class MessageManager {
      * Set up the message object
      * @param messageConfig The configuration
      */
-    public static void setupMessage(Config messageConfig) {
+    public static Message setupMessage(Config messageConfig) {
         final FileConfiguration config = messageConfig.get();
-        Message.start = config.getString("start");
-        Message.start_creator = config.getString("start_creator");
-        Message.end = config.getString("end");
-        Message.end_creator = config.getString("end_creator");
-        Message.pause = config.getString("pause");
-        Message.pause_creator = config.getString("pause_creator");
-        Message.resume = config.getString("resume");
-        Message.resume_creator = config.getString("resume_creator");
+        final Message message = new Message("game-commands");
+        message.setMessage("start", config.getString("start"));
+        message.setMessage("start_creator", config.getString("start_creator"));
+        message.setMessage("end", config.getString("end"));
+        message.setMessage("end_creator", config.getString("end_creator"));
+        message.setMessage("pause", config.getString("pause"));
+        message.setMessage("pause_creator", config.getString("pause_creator"));
+        message.setMessage("resume", config.getString("resume"));
+        message.setMessage("resume_creator", config.getString("resume_creator"));
+        return message;
     }
 
     /**

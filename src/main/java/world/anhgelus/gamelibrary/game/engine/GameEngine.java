@@ -11,6 +11,8 @@ import world.anhgelus.gamelibrary.util.SenderHelper;
 
 public class GameEngine {
     private final Game game;
+    private Message message;
+
     private WinConditions winConditions;
     private StartConditions startConditions;
     private GeneralConditions generalConditions;
@@ -21,8 +23,9 @@ public class GameEngine {
      *
      * @param game Game
      */
-    public GameEngine(Game game) {
+    public GameEngine(Game game, Message message) {
         this.game = game;
+        this.message = message;
     }
 
     /**
@@ -38,7 +41,9 @@ public class GameEngine {
         }
         state = GameState.STARTING;
         startConditions.onStart(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.start, game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("start"), game.getName(), player.getName()));
+        SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("start_creator"),
+                game.getName(), player.getName()));
     }
 
     /**
@@ -50,8 +55,10 @@ public class GameEngine {
         }
         state = GameState.ENDING;
         winConditions.onWin(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.end, game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("end"), game.getName(), player.getName()));
         state = GameState.NOT_STARTED;
+        SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("end_creator"),
+                game.getName(), player.getName()));
     }
 
     /**
@@ -62,8 +69,10 @@ public class GameEngine {
             SenderHelper.sendError(player, "The game is not running.");
         }
         state = GameState.PAUSED;
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.pause, game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("pause"), game.getName(), player.getName()));
         generalConditions.onPause(game);
+        SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("pause_creator"),
+                game.getName(), player.getName()));
     }
 
     /**
@@ -75,7 +84,9 @@ public class GameEngine {
         }
         state = GameState.RUNNING;
         generalConditions.onResume(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(Message.resume, game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("resume"), game.getName(), player.getName()));
+        SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("resume_creator"),
+                game.getName(), player.getName()));
     }
 
     public void setWinConditions(WinConditions winConditions) {
@@ -108,5 +119,9 @@ public class GameEngine {
 
     public GameState getState() {
         return state;
+    }
+
+    public void setMessages(Message message) {
+        this.message = message;
     }
 }

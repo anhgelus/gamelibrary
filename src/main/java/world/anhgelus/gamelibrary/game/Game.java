@@ -2,6 +2,7 @@ package world.anhgelus.gamelibrary.game;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import world.anhgelus.gamelibrary.GameLibrary;
 import world.anhgelus.gamelibrary.game.engine.GameEngine;
 
 public class Game {
@@ -20,7 +21,7 @@ public class Game {
     public Game(Plugin main, String name) {
         this.main = main;
         this.name = name;
-        this.engine = new GameEngine(this);
+        this.engine = new GameEngine(this, GameLibrary.getGameMessages());
         INSTANCE = this;
         this.properties = new GameProperties(name);
     }

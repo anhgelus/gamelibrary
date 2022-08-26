@@ -1,7 +1,7 @@
 package world.anhgelus.gamelibrary;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
+import world.anhgelus.gamelibrary.messages.Message;
 import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
@@ -11,11 +11,12 @@ import java.util.HashMap;
 
 public final class GameLibrary extends JavaPlugin {
 
-    private static GameLibrary instance;
+    private static GameLibrary INSTANCE;
+    private static Message GAME_MESSAGES;
 
     @Override
     public void onEnable() {
-        instance = this;
+        INSTANCE = this;
 
         ConfigAPI.init(this);
 
@@ -32,15 +33,18 @@ public final class GameLibrary extends JavaPlugin {
     }
 
     public static GameLibrary getInstance() {
-        return instance;
+        return INSTANCE;
+    }
+    public static Message getGameMessages() {
+        return GAME_MESSAGES;
     }
 
     private void generateConfigs() {
-        final Config messages = ConfigAPI.getConfig("messages.yml");
-        if (messages.isFirstLoad()) {
-            MessageManager.generateConfig(messages);
+        final Config messagesConfig = ConfigAPI.getConfig("messages.yml");
+        if (messagesConfig.isFirstLoad()) {
+            MessageManager.generateConfig(messagesConfig);
         }
-        MessageManager.setupMessage(messages);
+        final Message message = MessageManager.setupMessage(messagesConfig);
     }
 
     private void registerCommands() {
