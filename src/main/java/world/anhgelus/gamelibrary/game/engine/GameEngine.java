@@ -41,9 +41,9 @@ public class GameEngine {
         }
         state = GameState.STARTING;
         startConditions.onStart(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("start"), game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("start"), player, game));
         SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("start_creator"),
-                game.getName(), player.getName()));
+                player, game));
     }
 
     /**
@@ -55,10 +55,10 @@ public class GameEngine {
         }
         state = GameState.ENDING;
         winConditions.onWin(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("end"), game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("end"), player, game));
         state = GameState.NOT_STARTED;
         SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("end_creator"),
-                game.getName(), player.getName()));
+                player, game));
     }
 
     /**
@@ -69,10 +69,10 @@ public class GameEngine {
             SenderHelper.sendError(player, "The game is not running.");
         }
         state = GameState.PAUSED;
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("pause"), game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("pause"), player, game));
         generalConditions.onPause(game);
         SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("pause_creator"),
-                game.getName(), player.getName()));
+                player, game));
     }
 
     /**
@@ -84,9 +84,9 @@ public class GameEngine {
         }
         state = GameState.RUNNING;
         generalConditions.onResume(game);
-        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("resume"), game.getName(), player.getName()));
+        SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("resume"), player, game));
         SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("resume_creator"),
-                game.getName(), player.getName()));
+                player, game));
     }
 
     public void setWinConditions(WinConditions winConditions) {

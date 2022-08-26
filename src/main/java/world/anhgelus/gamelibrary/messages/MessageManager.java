@@ -1,6 +1,8 @@
 package world.anhgelus.gamelibrary.messages;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.util.config.Config;
 
 public class MessageManager {
@@ -8,7 +10,7 @@ public class MessageManager {
      * Set up the message object
      * @param messageConfig The configuration
      */
-    public static Message setupMessage(Config messageConfig) {
+    public static Message setupGameMessage(Config messageConfig) {
         final FileConfiguration config = messageConfig.get();
         final Message message = new Message("game-commands");
         message.setMessage("start", config.getString("start"));
@@ -26,27 +28,33 @@ public class MessageManager {
      * Generate the configuration file for the messages
      * @param messageConfig Configuration of the messages
      */
-    public static void generateConfig(Config messageConfig) {
+    public static void generateGameConfig(Config messageConfig) {
         final FileConfiguration config = messageConfig.get();
-        config.set("start", "&aGame &6%game% &ahas been started by &6%creator%&a!");
-        config.set("start_creator", "&aThe game &6%game% &ahas been started perfectly!");
-        config.set("end", "&aGame &6%game% &ahas been stopped perfectly!");
-        config.set("end_creator", "&aThe Game &6%game% &ahas been stopped perfectly!");
-        config.set("pause", "&aGame &6%game% &ahas been paused by &6%creator%&a!");
-        config.set("pause_creator", "&aThe game &6%game% &ahas been paused perfectly!");
-        config.set("resume", "&aThe game &6%game% &ahas been resumed by &6%creator%&a!");
-        config.set("resume_creator", "&aThe game &6%game% &ahas been resumed perfectly!");
+        config.set("start", "&aGame &6%game_name% &ahas been started by &6%player_name%&a!");
+        config.set("start_creator", "&aThe game &6%game_name% &ahas been started perfectly!");
+        config.set("end", "&aGame &6%game_name% &ahas been stopped perfectly!");
+        config.set("end_creator", "&aThe Game &6%game_name% &ahas been stopped perfectly!");
+        config.set("pause", "&aGame &6%game_name% &ahas been paused by &6%player_name%&a!");
+        config.set("pause_creator", "&aThe game &6%game_name% &ahas been paused perfectly!");
+        config.set("resume", "&aThe game &6%game_name% &ahas been resumed by &6%player_name%&a!");
+        config.set("resume_creator", "&aThe game &6%game_name% &ahas been resumed perfectly!");
         messageConfig.save();
     }
 
     /**
      * Parse a message
      * @param message Message to parse
+     * @param player Player who is parsing the message
      * @param game Game's name
-     * @param creator Game's creator
      * @return Parsed message
      */
-    public static String parseMessage(String message, String game, String creator) {
-        return message.replace("%game%", game).replace("%creator%", creator);
+    public static String parseMessage(String message, Player player, Game game) {
+        if (message.contains("%game_name%")) {
+            message = message.replace("%game_name%", game.getName());
+        }
+        if (message.contains("%player_name%")) {
+            message = message.replace("%player_name%", player.getName());
+        }
+        return message;
     }
 }
