@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GameCommands implements CommandExecutor {
     private final List<Subcommand> subcommands;
@@ -29,9 +30,16 @@ public class GameCommands implements CommandExecutor {
 
         for (Subcommand subcommand : subcommands) {
             if (subcommand.getIdentifier().equals(sub)) {
-                subcommand.onCommand(player, args);
+                if (!subcommand.onCommand(player, args)) {
+                    SenderHelper.sendMessage(player, ChatColor.RED + "Error while executing the subcommand.");
+                };
                 return true;
             }
+        }
+
+        if (Objects.equals(sub, "help")) {
+            helpCommands(player);
+            return true;
         }
 
         SenderHelper.sendWarning(player, "Unknown subcommand: " + sub);
