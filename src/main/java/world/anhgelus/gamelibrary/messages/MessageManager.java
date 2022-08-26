@@ -5,7 +5,11 @@ import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.util.config.Config;
 
+import java.util.List;
+
 public class MessageManager {
+    private static List<MessageParser> customMessageParsers;
+
     /**
      * Set up the message object
      * @param messageConfig The configuration
@@ -55,6 +59,19 @@ public class MessageManager {
         if (message.contains("%player_name%")) {
             message = message.replace("%player_name%", player.getName());
         }
+        for (MessageParser parser : customMessageParsers) {
+            if (message.contains(parser.placeholder)) {
+                message = parser.parseMessage(message, player, game);
+            }
+        }
         return message;
+    }
+
+    public static List<MessageParser> getCustomMessageParsers() {
+        return customMessageParsers;
+    }
+
+    public static void setCustomMessageParsers(List<MessageParser> customMessageParsers) {
+        MessageManager.customMessageParsers = customMessageParsers;
     }
 }

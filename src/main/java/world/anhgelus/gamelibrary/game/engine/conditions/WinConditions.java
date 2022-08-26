@@ -7,5 +7,5 @@ public interface WinConditions {
     /**
      * Executed when the game is finished
      */
-    public void onWin(Game game);
+    void onWin(Game game);
 }

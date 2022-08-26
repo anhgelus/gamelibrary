@@ -6,5 +6,5 @@ public interface StartConditions {
     /**
      * Executed when the game is started
      */
-    public void onStart(Game game);
+    void onStart(Game game);
 }
