@@ -71,7 +71,7 @@ public class MessageManager {
         return customMessageParsers;
     }
 
-    public static void setCustomMessageParsers(List<MessageParser> customMessageParsers) {
-        MessageManager.customMessageParsers = customMessageParsers;
+    public static void addCustomMessageParsers(MessageParser parser) {
+        customMessageParsers.add(parser);
     }
 }
