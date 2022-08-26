@@ -21,6 +21,7 @@ A Spigot game library to create games mode easier.
 ## Technologies
 
 - Java 17
+- Spigot 1.19.2
 - Gradle
 - Minecraft >= 1.18
 
