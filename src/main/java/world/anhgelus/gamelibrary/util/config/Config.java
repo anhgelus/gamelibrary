@@ -11,7 +11,12 @@ import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Robotv2
+ */
+
 public class Config {
+
     private final Plugin main;
     private final String name;
 
