@@ -29,23 +29,6 @@ public class MessageManager {
     }
 
     /**
-     * Generate the configuration file for the messages
-     * @param messageConfig Configuration of the messages
-     */
-    public static void generateGameConfig(Config messageConfig) {
-        final FileConfiguration config = messageConfig.get();
-        config.set("start", "&aGame &6%game_name% &ahas been started by &6%player_name%&a!");
-        config.set("start_creator", "&aThe game &6%game_name% &ahas been started perfectly!");
-        config.set("end", "&aGame &6%game_name% &ahas been stopped perfectly!");
-        config.set("end_creator", "&aThe Game &6%game_name% &ahas been stopped perfectly!");
-        config.set("pause", "&aGame &6%game_name% &ahas been paused by &6%player_name%&a!");
-        config.set("pause_creator", "&aThe game &6%game_name% &ahas been paused perfectly!");
-        config.set("resume", "&aThe game &6%game_name% &ahas been resumed by &6%player_name%&a!");
-        config.set("resume_creator", "&aThe game &6%game_name% &ahas been resumed perfectly!");
-        messageConfig.save();
-    }
-
-    /**
      * Parse a message
      * @param message Message to parse
      * @param player Player who is parsing the message
