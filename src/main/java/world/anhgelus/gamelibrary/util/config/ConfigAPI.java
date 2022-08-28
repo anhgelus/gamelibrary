@@ -4,6 +4,10 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 
+/**
+ * @author Robotv2
+ */
+
 public class ConfigAPI {
     private static Plugin plugin;
     private static final HashMap<String, Config> CONFIGS = new HashMap<>();
