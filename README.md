@@ -15,9 +15,9 @@ A Spigot game library to create games mode easier.
 - Basic Game Subcommands (/game start, /game stop, /game pause, /game resume)
 - Vault to save some data
 - Useful serializer
+- Team Management
 
 ### Planned
-- Team Management
 - Chronometer
 
 ## Technologies
