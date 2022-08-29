@@ -3,7 +3,7 @@ package world.anhgelus.gamelibrary.game.commands.regular;
 import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
-import world.anhgelus.gamelibrary.game.commands.Subcommand;
+import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 public class PauseSubCmd extends Subcommand {

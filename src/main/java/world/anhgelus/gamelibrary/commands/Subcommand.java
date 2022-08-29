@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.game.commands;
+package world.anhgelus.gamelibrary.commands;
 
 import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.game.GameProperties;

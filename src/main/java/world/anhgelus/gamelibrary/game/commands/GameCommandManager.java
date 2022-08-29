@@ -1,5 +1,6 @@
 package world.anhgelus.gamelibrary.game.commands;
 
+import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.game.commands.regular.PauseSubCmd;
 import world.anhgelus.gamelibrary.game.commands.regular.ResumeSubCmd;
