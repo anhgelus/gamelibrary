@@ -7,6 +7,7 @@ import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.util.config.Config;
 
 import java.util.List;
+import java.util.UUID;
 
 public class TeamSerializer {
     /**
@@ -28,11 +29,12 @@ public class TeamSerializer {
     /**
      * Load a team from a config
      * @param config Config to load the team from
+     * @param uuid UUID of the team to load
      * @return Team loaded from the config
      */
-    public static Team teamFromConfig(Config config) {
+    public static Team teamFromConfig(Config config, UUID uuid) {
         final ConfigurationSection section = config.get();
-        final String key = "teams" + "." + section.getString("uuid") + ".";
+        final String key = "teams" + "." + uuid.toString() + ".";
         final String name = section.getString(key + "name");
         final String prefix = section.getString(key + "prefix");
         final ChatColor color = ChatColor.valueOf(section.getString(key + "color"));
