@@ -64,7 +64,7 @@ public class TeamManager {
     /**
      * Check if a player has a team
      * @param player Player to check
-     * @return True if the player has a team else false
+     * @return True if the player has a team, false otherwise
      */
     public static boolean hasTeam(Player player) {
         for (Team team : TEAMS) {

@@ -16,9 +16,12 @@ A Spigot game library to create games mode easier.
 - Vault to save some data
 - Useful serializer
 - Team Management
+- Chronometer
 
 ### Planned
-- Chronometer
+- Team Commands (/team create, /team join, /team leave, /team list)
+- TabCompleter for Team Subcommands
+- TabCompleter for Game Subcommands
 
 ## Technologies
 
