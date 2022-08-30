@@ -29,6 +29,12 @@ public abstract class GeneralCommands implements CommandExecutor {
         return command(player, args);
     }
 
+    /**
+     * Execute the subcommand
+     * @param player The player who executed the command
+     * @param args The arguments passed to the command
+     * @return True if the command was executed successfully
+     */
     protected boolean onSubcommand(Player player, String[] args) {
         final String sub = args[0];
 
@@ -51,5 +57,36 @@ public abstract class GeneralCommands implements CommandExecutor {
 
     protected abstract boolean command(Player player, String[] args);
 
-    protected abstract void helpCommands(Player player);
+    /**
+     * Execute the help command
+     * @param player The player who executed the command
+     */
+    protected void helpCommands(Player player) {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Available commands:\n");
+        for (Subcommand subcommand : subcommands) {
+            sb.append(SenderHelper.EXAMPLE)
+                    .append("/game ")
+                    .append(subcommand.getIdentifier())
+                    .append(SenderHelper.SUCCESS)
+                    .append(" - ")
+                    .append(SenderHelper.INFO)
+                    .append(subcommand.getDescription())
+                    .append("\n");
+        }
+        player.sendMessage(sb.toString());
+    }
+
+    /**
+     * Send a list to a player
+     * @param player The player to send the list to
+     * @param list The list to send
+     */
+    public static void sendList(Player player, List list) {
+        final StringBuilder sb = new StringBuilder();
+        for (Object o : list) {
+            sb.append(o.toString()).append(", ");
+        }
+        player.sendMessage(sb.toString().substring(0, sb.toString().length() - 2));
+    }
 }

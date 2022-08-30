@@ -18,9 +18,9 @@ A Spigot game library to create games mode easier.
 - Team Management
 - Chronometer
 - Simplified Command Creation 
+- Team Commands (/team create, /team join, /team leave, /team list)
 
 ### Planned
-- Team Commands (/team create, /team join, /team leave, /team list)
 - TabCompleter for Team Subcommands
 - TabCompleter for Game Subcommands
 

@@ -4,3 +4,7 @@ main: world.anhgelus.gamelibrary.GameLibrary
 api-version: 1.18
 authors: [ "Anhgelus Morhtuuzh" ]
 prefix: GameLibrary
+commands:
+  team:
+    description: Team management commands
+    usage: /team <command>

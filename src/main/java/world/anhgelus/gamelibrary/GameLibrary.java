@@ -1,24 +1,40 @@
 package world.anhgelus.gamelibrary;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.messages.Message;
 import world.anhgelus.gamelibrary.messages.MessageManager;
+import world.anhgelus.gamelibrary.team.TeamCommands;
+import world.anhgelus.gamelibrary.team.subcommands.CreateSubCmd;
+import world.anhgelus.gamelibrary.team.subcommands.JoinSubCmd;
+import world.anhgelus.gamelibrary.team.subcommands.LeaveSubCmd;
+import world.anhgelus.gamelibrary.team.subcommands.ListSubCmd;
 import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.config.ConfigAPI;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public final class GameLibrary extends JavaPlugin {
 
     private static GameLibrary INSTANCE;
     private static Message GAME_MESSAGES;
 
+    private List<Subcommand> teamSubcommands;
+
     @Override
     public void onEnable() {
         INSTANCE = this;
 
         ConfigAPI.init(this);
+
+        teamSubcommands = new ArrayList<>();
+        teamSubcommands.add(new CreateSubCmd());
+        teamSubcommands.add(new ListSubCmd());
+        teamSubcommands.add(new JoinSubCmd());
+        teamSubcommands.add(new LeaveSubCmd());
 
         this.generateConfigs();
         this.generateVault();
@@ -41,11 +57,11 @@ public final class GameLibrary extends JavaPlugin {
 
     private void generateConfigs() {
         final Config messagesConfig = ConfigAPI.getConfig("messages.yml");
-        final Message message = MessageManager.setupGameMessage(messagesConfig);
+        GAME_MESSAGES = MessageManager.setupGameMessage(messagesConfig);
     }
 
     private void registerCommands() {
-        // Nothing to do here now
+        getCommand("team").setExecutor(new TeamCommands(teamSubcommands));
     }
 
     private void generateVault() {

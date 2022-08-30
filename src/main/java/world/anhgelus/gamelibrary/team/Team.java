@@ -81,4 +81,8 @@ public class Team {
     public UUID getUUID() {
         return uuid;
     }
+
+    public String toString() {
+        return name;
+    }
 }

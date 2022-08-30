@@ -9,7 +9,7 @@ public class Game {
     private final Plugin main;
     private final String name;
     private final GameEngine engine;
-    private GameProperties properties;
+    private final GameProperties properties;
 
     private static Game INSTANCE;
 
