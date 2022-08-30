@@ -11,6 +11,7 @@ public class Game {
     private final String name;
     private final GameEngine engine;
     private final GameProperties properties;
+    private final GameCommandManager gameCommandManager;
 
     private static Game INSTANCE;
 
@@ -25,6 +26,7 @@ public class Game {
         this.engine = new GameEngine(this, GameLibrary.getGameMessages());
         INSTANCE = this;
         this.properties = new GameProperties(name);
+        this.gameCommandManager = new GameCommandManager(properties);
     }
 
     /**
@@ -79,6 +81,6 @@ public class Game {
     }
 
     public GameCommandManager getCommandManager() {
-        return new GameCommandManager(properties);
+        return gameCommandManager;
     }
 }
