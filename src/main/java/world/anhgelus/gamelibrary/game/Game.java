@@ -3,6 +3,7 @@ package world.anhgelus.gamelibrary.game;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import world.anhgelus.gamelibrary.GameLibrary;
+import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.game.engine.GameEngine;
 
 public class Game {
@@ -75,5 +76,9 @@ public class Game {
 
     public GameProperties getProperties() {
         return properties;
+    }
+
+    public GameCommandManager getCommandManager() {
+        return new GameCommandManager(properties);
     }
 }
