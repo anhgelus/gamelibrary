@@ -22,13 +22,15 @@ public final class GameLibrary extends JavaPlugin {
     private static GameLibrary INSTANCE;
     private static Message GAME_MESSAGES;
 
+    private static ConfigAPI CONFIG_API;
+
     private List<Subcommand> teamSubcommands;
 
     @Override
     public void onEnable() {
         INSTANCE = this;
 
-        ConfigAPI.init(this);
+        CONFIG_API = new ConfigAPI(this);
 
         teamSubcommands = new ArrayList<>();
         teamSubcommands.add(new CreateSubCmd());
@@ -55,8 +57,12 @@ public final class GameLibrary extends JavaPlugin {
         return GAME_MESSAGES;
     }
 
+    public static ConfigAPI getConfigApi() {
+        return CONFIG_API;
+    }
+
     private void generateConfigs() {
-        final Config messagesConfig = ConfigAPI.getConfig("messages.yml");
+        final Config messagesConfig = CONFIG_API.getConfig("messages.yml");
         GAME_MESSAGES = MessageManager.setupGameMessage(messagesConfig);
     }
 

@@ -6,34 +6,36 @@ import java.util.HashMap;
 
 /**
  * @author Robotv2
+ * @author Modified by anhgelus
  */
 
 public class ConfigAPI {
-    private static Plugin plugin;
-    private static final HashMap<String, Config> CONFIGS = new HashMap<>();
+    private final Plugin plugin;
+    private final HashMap<String, Config> CONFIGS = new HashMap<>();
+
+
+
+    /**
+     * @param plugin Plugin's main file
+     */
+    public ConfigAPI(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
     /**
      * Get the configuration
      * @param name Name of the configuration
      * @return The configuration
      */
-    public static Config getConfig(String name) {
+    public Config getConfig(String name) {
         if(plugin == null) {
             throw new NullPointerException("plugin");
         }
         Config config = CONFIGS.get(name);
         if(config == null) {
-            config = new Config(ConfigAPI.plugin, name);
+            config = new Config(plugin, name);
             CONFIGS.put(name, config);
         }
         return config;
-    }
-
-    /**
-     * Init the ConfigAPI
-     * @param plugin Plugin's main file
-     */
-    public static void init(Plugin plugin) {
-        ConfigAPI.plugin = plugin;
     }
 }
