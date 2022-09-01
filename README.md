@@ -39,4 +39,4 @@ To contribute to this project, you can fork this repository and make your change
 After, you can create a pull request, and I'll review your changes.
 
 ## License
-The license for this project is GPL-3.0. See the LICENSE file for more information.
+The license for this project is MPL-2.0. See the LICENSE file for more information.
