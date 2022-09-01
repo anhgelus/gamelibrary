@@ -34,7 +34,7 @@ public class TeamSerializer {
      * @return Team loaded from the config
      */
     public static Team teamFromConfig(Config config, UUID uuid) {
-        final ConfigurationSection section = config.get();
+        final FileConfiguration section = config.get();
         final String key = "teams" + "." + uuid.toString() + ".";
         final String name = section.getString(key + "name");
         final String prefix = section.getString(key + "prefix");
