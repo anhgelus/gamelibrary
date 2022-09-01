@@ -7,6 +7,9 @@ import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class JoinSubCmd extends Subcommand {
     public JoinSubCmd() {
         super("join","Join a team",null);
@@ -14,6 +17,11 @@ public class JoinSubCmd extends Subcommand {
 
     @Override
     public boolean onCommand(Player player, String[] args) {
+        if (args.length < 2) {
+            SenderHelper.sendWarning(player, "Usage: /team join <team> [player]");
+            return true;
+        }
+
         final String teamName = args[1];
 
         final Team team = TeamManager.getTeam(teamName);
@@ -39,5 +47,16 @@ public class JoinSubCmd extends Subcommand {
         
         SenderHelper.sendSuccess(player, "You joined the team " + teamName);
         return true;
+    }
+
+    @Override
+    public List<String> getTabCompleter(Player player, String[] args) {
+        if (args.length == 2) {
+            return teamListName();
+        }
+        if (args.length == 3) {
+            return playerListName();
+        }
+        return null;
     }
 }

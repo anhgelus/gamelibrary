@@ -6,6 +6,8 @@ import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
+import java.util.List;
+
 public class PauseSubCmd extends Subcommand {
     public PauseSubCmd(GameProperties gameProperties) {
         super("pause", "Pause the game", gameProperties);
@@ -22,5 +24,10 @@ public class PauseSubCmd extends Subcommand {
         }
         game.pause(player);
         return true;
+    }
+
+    @Override
+    public List<String> getTabCompleter(Player player, String[] args) {
+        return null;
     }
 }

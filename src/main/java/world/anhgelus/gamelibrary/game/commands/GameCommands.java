@@ -1,13 +1,13 @@
 package world.anhgelus.gamelibrary.game.commands;
 
 import org.bukkit.entity.Player;
-import world.anhgelus.gamelibrary.commands.GeneralCommands;
+import world.anhgelus.gamelibrary.commands.GeneralCommand;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;
 
-public class GameCommands extends GeneralCommands {
+public class GameCommands extends GeneralCommand {
     public GameCommands(List<Subcommand> subcommands) {
         super(subcommands);
     }

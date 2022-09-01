@@ -6,6 +6,8 @@ import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 
+import java.util.List;
+
 public class StartSubCmd extends Subcommand {
     public StartSubCmd(GameProperties gameProperties) {
         super("start", "Start the game", gameProperties);
@@ -16,5 +18,10 @@ public class StartSubCmd extends Subcommand {
         final Game game = new Game(GameLibrary.getInstance(), properties.name);
         game.start(player);
         return true;
+    }
+
+    @Override
+    public List<String> getTabCompleter(Player player, String[] args) {
+        return null;
     }
 }

@@ -7,6 +7,8 @@ import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
+import java.util.List;
+
 public class LeaveSubCmd extends Subcommand {
     public LeaveSubCmd() {
         super("leave", "Leave your current team", null);
@@ -14,6 +16,10 @@ public class LeaveSubCmd extends Subcommand {
 
     @Override
     public boolean onCommand(Player player, String[] args) {
+        if (args.length < 1) {
+            SenderHelper.sendWarning(player, "Usage: /team leave [player]");
+            return true;
+        }
         if (args.length > 1) {
             final String playerName = args[1];
             final Player targetPlayer = Bukkit.getPlayer(playerName);
@@ -46,5 +52,16 @@ public class LeaveSubCmd extends Subcommand {
         team.removePlayer(player);
         SenderHelper.sendSuccess(player, "You left the team " + team.getName());
         return true;
+    }
+
+    @Override
+    public List<String> getTabCompleter(Player player, String[] args) {
+        if (args.length == 2) {
+            return playerListName();
+        }
+        if (args.length == 3) {
+            return teamListName();
+        }
+        return null;
     }
 }

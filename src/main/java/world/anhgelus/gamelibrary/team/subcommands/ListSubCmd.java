@@ -24,4 +24,9 @@ public class ListSubCmd extends Subcommand {
         TeamCommands.sendList(player, teams);
         return true;
     }
+
+    @Override
+    public List<String> getTabCompleter(Player player, String[] args) {
+        return null;
+    }
 }

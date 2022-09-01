@@ -10,10 +10,10 @@ import world.anhgelus.gamelibrary.util.SenderHelper;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class GeneralCommands implements CommandExecutor {
+public abstract class GeneralCommand implements CommandExecutor {
     protected final List<Subcommand> subcommands;
 
-    public GeneralCommands(List<Subcommand> subcommands) {
+    public GeneralCommand(List<Subcommand> subcommands) {
         this.subcommands = subcommands;
     }
 
