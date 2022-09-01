@@ -2,6 +2,7 @@ package world.anhgelus.gamelibrary.util.serializer;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.util.config.Config;
@@ -16,7 +17,7 @@ public class TeamSerializer {
      * @param config Config to save the team in
      */
     public static void teamToConfig(Team team, Config config) {
-        final ConfigurationSection section = config.get();
+        final FileConfiguration section = config.get();
         final String key = "teams" + "." + team.getUUID().toString() + ".";
         section.set(key + "name", team.getName());
         section.set(key + "prefix", team.getPrefix());
