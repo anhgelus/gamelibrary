@@ -1,6 +1,8 @@
 package world.anhgelus.gamelibrary.team;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.serializer.TeamSerializer;
@@ -34,6 +36,26 @@ public class TeamManager {
     public static void saveTeam(Team team) {
         if (CONFIG == null) throw new NullPointerException("Config is null or was not set");
         TeamSerializer.teamToConfig(team, CONFIG);
+    }
+
+    /**
+     * Load every team from the config file
+     * @param registerIt If true, register the teams in the TEAMS list
+     * @return List of teams loaded from the config file
+     */
+    @Nullable
+    public static List<Team> loadTeams(boolean registerIt) {
+        final FileConfiguration config = CONFIG.get();
+        final ConfigurationSection section = config.getConfigurationSection("teams");
+        if (section == null) return null;
+        final List<Team> teams = new ArrayList<>();
+        section.getKeys(false).forEach(uuid -> {
+            final Team team = TeamSerializer.teamFromConfig(CONFIG, UUID.fromString(uuid));
+            if (team == null) return;
+            if (registerIt) TEAMS.add(team);
+            teams.add(team);
+        });
+        return teams;
     }
 
     /**
