@@ -56,10 +56,10 @@ public class LeaveSubCmd extends Subcommand {
 
     @Override
     public List<String> getTabCompleter(Player player, String[] args) {
-        if (args.length == 2) {
+        if (args.length == 1) {
             return playerListName();
         }
-        if (args.length == 3) {
+        if (args.length == 2) {
             return teamListName();
         }
         return null;

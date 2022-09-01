@@ -31,13 +31,13 @@ public class CreateSubCmd extends Subcommand {
 
     @Override
     public List<String> getTabCompleter(Player player, String[] args) {
-        if (args.length == 2) {
+        if (args.length == 1) {
             return List.of("teamName");
         }
-        if (args.length == 3) {
+        if (args.length == 2) {
             return List.of("prefix");
         }
-        if (args.length == 4) {
+        if (args.length == 3) {
             return Arrays.stream(ChatColor.values()).map(ChatColor::name).collect(Collectors.toList());
         }
         return null;
