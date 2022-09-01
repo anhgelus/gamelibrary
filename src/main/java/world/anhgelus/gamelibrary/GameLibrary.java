@@ -5,6 +5,7 @@ import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.messages.Message;
 import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.team.TeamCommands;
+import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.team.subcommands.*;
 import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
@@ -28,6 +29,8 @@ public final class GameLibrary extends JavaPlugin {
         INSTANCE = this;
 
         CONFIG_API = new ConfigAPI(this);
+
+        TeamManager.CONFIG = CONFIG_API.getConfig("teams");
 
         teamSubcommands = new ArrayList<>();
         teamSubcommands.add(new CreateSubCmd());
