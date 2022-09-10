@@ -31,7 +31,7 @@ public class Database {
     }
 
     /**
-     * Execute a query
+     * Execute a select query
      * @param table Table to execute the query
      * @param columns Columns to execute the query
      * @param queryAll Query everything
@@ -52,6 +52,8 @@ public class Database {
             resultSet = statement.executeQuery("SELECT "+sb.toString()+" FROM "+table+"");
         }
 
+        statement.close();
+
         final Map<Integer, Map<String, Object>> objects = new HashMap();
 
         while (resultSet.next()) {
@@ -65,7 +67,7 @@ public class Database {
     }
 
     /**
-     * Execute a query
+     * Execute a select query
      * @param table Table to execute the query
      * @param columns Columns to execute the query
      * @return Map of the query ID -> (String = Column name, Object = Column value)
@@ -73,6 +75,29 @@ public class Database {
      */
     public Map<Integer, Map<String, Object>> query(String table, String[] columns) throws SQLException {
         return query(table, columns, false);
+    }
+
+    /**
+     * Execute a select query
+     * @param table Table to execute the query
+     * @param data Data to execute the query (String = Column name, Object = Column value)
+     * @throws SQLException Exception
+     */
+    public void insert(String table, Map<String, Object> data) throws SQLException {
+        final Statement statement = connection.createStatement();
+
+        final StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO ").append(table).append(" (");
+        for (String column : data.keySet()) {
+            sb.append(column).append(",");
+        }
+        sb.replace(sb.length() - 1, sb.length(), ") VALUES (");
+        for (Object value : data.values()) {
+            sb.append(value).append(",");
+        }
+        sb.replace(sb.length() - 1, sb.length(), ")");
+
+        statement.executeQuery(sb.toString());
     }
 
     public Connection getConnection() {
