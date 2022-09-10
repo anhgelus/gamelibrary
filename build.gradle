@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
 }
 
@@ -19,6 +20,10 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
+
+    implementation 'mysql:mysql-connector-java:8.0.30'
+    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.7'
 }
 
 def targetJavaVersion = 17
@@ -44,4 +49,10 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+shadowJar {
+    relocate 'mysql.mysql-connector-java', 'world.anhgelus.jdbc.mysql-connector-java'
+    relocate 'org.postgresql.postgresql', 'world.anhgelus.jdbc.postgresql'
+    relocate 'org.mariadb.jdbc.mariadb-java-client', 'world.anhgelus.jdbc.mariadb'
 }

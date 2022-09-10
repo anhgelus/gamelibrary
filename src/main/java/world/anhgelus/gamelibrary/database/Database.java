@@ -43,13 +43,13 @@ public class Database {
 
         ResultSet resultSet;
         if (queryAll) {
-            resultSet = statement.executeQuery("SELECT * FROM "+table+"");
+            resultSet = statement.executeQuery("SELECT * FROM "+table);
         } else {
             final StringBuilder sb = new StringBuilder();
             for (String column : columns) {
                 sb.append(column).append(",");
             }
-            resultSet = statement.executeQuery("SELECT "+sb.toString()+" FROM "+table+"");
+            resultSet = statement.executeQuery("SELECT "+sb.toString()+" FROM "+table);
         }
 
         statement.close();
@@ -112,9 +112,9 @@ public class Database {
         final Statement statement = connection.createStatement();
 
         if (where.length() == 0) {
-            statement.execute("DELETE FROM "+table+"");
+            statement.execute("DELETE FROM "+table);
         } else {
-            statement.execute("DELETE FROM "+table+" WHERE "+where+"");
+            statement.execute("DELETE FROM "+table+" WHERE "+where);
         }
 
         statement.close();
