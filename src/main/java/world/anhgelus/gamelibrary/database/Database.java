@@ -129,6 +129,28 @@ public class Database {
         delete(table, "");
     }
 
+    /**
+     * Execute an update query
+     * @param table Table to execute the query
+     * @param data Data to execute the query (String = Column name, Object = Column value)
+     * @param where Selector to use in the query (e.g.: "id = 1")
+     * @throws SQLException Exception
+     */
+    public void update(String table, Map<String, Object> data, String where) throws SQLException {
+        final Statement statement = connection.createStatement();
+
+        final StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE ").append(table).append(" SET ");
+        for (String column : data.keySet()) {
+            sb.append(column).append(" = ").append(data.get(column)).append(",");
+        }
+        sb.replace(sb.length() - 1, sb.length(), " WHERE "+where);
+
+        statement.execute(sb.toString());
+
+        statement.close();
+    }
+
     public Connection getConnection() {
         return connection;
     }
