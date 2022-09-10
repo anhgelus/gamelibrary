@@ -97,7 +97,36 @@ public class Database {
         }
         sb.replace(sb.length() - 1, sb.length(), ")");
 
-        statement.executeQuery(sb.toString());
+        statement.execute(sb.toString());
+
+        statement.close();
+    }
+
+    /**
+     * Execute a delete query
+     * @param table Table to execute the query
+     * @param where Selector to use in the query (e.g.: "id = 1")
+     * @throws SQLException Exception
+     */
+    public void delete(String table, String where) throws SQLException {
+        final Statement statement = connection.createStatement();
+
+        if (where.length() == 0) {
+            statement.execute("DELETE FROM "+table+"");
+        } else {
+            statement.execute("DELETE FROM "+table+" WHERE "+where+"");
+        }
+
+        statement.close();
+    }
+
+    /**
+     * Execute a delete everything query
+     * @param table Table to execute the query
+     * @throws SQLException Exception
+     */
+    public void delete(String table) throws SQLException {
+        delete(table, "");
     }
 
     public Connection getConnection() {
