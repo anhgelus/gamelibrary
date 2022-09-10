@@ -22,6 +22,7 @@ A Spigot game library to create games mode easier.
 - Simplified TabCompleter Creation
 - TabCompleter for Team Subcommands
 - TabCompleter for Game Subcommands
+- SQL Database Management (MySQL, MariaDB, Postgres)
 
 ### Planned
 - Updated wiki ?
