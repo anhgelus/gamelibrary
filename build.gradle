@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'world.anhgelus'
-version = '0.4.2-beta.3'
+version = '0.5.0-dev.2'
 
 repositories {
     mavenCentral()
