@@ -1,8 +1,7 @@
 package world.anhgelus.gamelibrary.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.*;
 
 public class Database {
     private Connection connection;
@@ -29,6 +28,51 @@ public class Database {
             throw new SQLException("Connection is null");
         }
         connection.close();
+    }
+
+    /**
+     * Execute a query
+     * @param table Table to execute the query
+     * @param columns Columns to execute the query
+     * @param queryAll Query everything
+     * @return Map of the query ID -> (String = Column name, Object = Column value)
+     * @throws SQLException Exception
+     */
+    public Map<Integer, Map<String, Object>> query(String table, String[] columns, boolean queryAll) throws SQLException {
+        final Statement statement = connection.createStatement();
+
+        ResultSet resultSet;
+        if (queryAll) {
+            resultSet = statement.executeQuery("SELECT * FROM "+table+"");
+        } else {
+            final StringBuilder sb = new StringBuilder();
+            for (String column : columns) {
+                sb.append(column).append(",");
+            }
+            resultSet = statement.executeQuery("SELECT "+sb.toString()+" FROM "+table+"");
+        }
+
+        final Map<Integer, Map<String, Object>> objects = new HashMap();
+
+        while (resultSet.next()) {
+            final Map<String, Object> object = new HashMap();
+            for (String column : columns) {
+                object.put(column, resultSet.getObject(column));
+            }
+            objects.put(resultSet.getRow(), object);
+        }
+        return objects;
+    }
+
+    /**
+     * Execute a query
+     * @param table Table to execute the query
+     * @param columns Columns to execute the query
+     * @return Map of the query ID -> (String = Column name, Object = Column value)
+     * @throws SQLException Exception
+     */
+    public Map<Integer, Map<String, Object>> query(String table, String[] columns) throws SQLException {
+        return query(table, columns, false);
     }
 
     public Connection getConnection() {
