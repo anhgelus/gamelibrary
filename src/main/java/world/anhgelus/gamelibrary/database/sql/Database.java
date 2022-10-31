@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.database;
+package world.anhgelus.gamelibrary.database.sql;
 
 import java.sql.*;
 import java.util.*;
@@ -39,6 +39,9 @@ public class Database {
      * @throws SQLException Exception
      */
     public Map<Integer, Map<String, Object>> query(String table, String[] columns, boolean queryAll) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Connection is null");
+        }
         final Statement statement = connection.createStatement();
 
         ResultSet resultSet;
@@ -84,6 +87,9 @@ public class Database {
      * @throws SQLException Exception
      */
     public void insert(String table, Map<String, Object> data) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Connection is null");
+        }
         final Statement statement = connection.createStatement();
 
         final StringBuilder sb = new StringBuilder();
@@ -109,6 +115,9 @@ public class Database {
      * @throws SQLException Exception
      */
     public void delete(String table, String where) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Connection is null");
+        }
         final Statement statement = connection.createStatement();
 
         if (where.length() == 0) {
@@ -137,6 +146,9 @@ public class Database {
      * @throws SQLException Exception
      */
     public void update(String table, Map<String, Object> data, String where) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Connection is null");
+        }
         final Statement statement = connection.createStatement();
 
         final StringBuilder sb = new StringBuilder();
