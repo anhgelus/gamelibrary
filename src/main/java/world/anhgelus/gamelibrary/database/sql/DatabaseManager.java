@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.database;
+package world.anhgelus.gamelibrary.database.sql;
 
 import java.util.HashMap;
 import java.util.Map;

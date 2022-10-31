@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.database;
+package world.anhgelus.gamelibrary.database.sql;
 
 /**
  * Database credentials
