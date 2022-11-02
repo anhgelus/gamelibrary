@@ -2,6 +2,7 @@ package world.anhgelus.gamelibrary.team.subcommands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.util.SenderHelper;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class CreateSubCmd extends Subcommand {
     public CreateSubCmd() {
-        super("create","Create a team",null);
+        super("create","Create a team", new Permission("gamelibrary.team.create"));
     }
 
     @Override

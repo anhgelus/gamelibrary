@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary.team.subcommands;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.team.TeamCommands;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ListSubCmd extends Subcommand {
     public ListSubCmd() {
-        super("list","List all teams",null);
+        super("list","List all teams",new Permission("gamelibrary.team.list"));
     }
 
     @Override

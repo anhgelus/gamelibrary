@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary.team.subcommands;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.util.SenderHelper;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class SaveSubCmd extends Subcommand {
     public SaveSubCmd() {
-        super("save", "Save the team inside a configuration file", null);
+        super("save", "Save the team inside a configuration file", new Permission("gamelibrary.team.save"));
     }
 
     @Override

@@ -2,6 +2,7 @@ package world.anhgelus.gamelibrary.team.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.team.TeamManager;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class JoinSubCmd extends Subcommand {
     public JoinSubCmd() {
-        super("join","Join a team",null);
+        super("join","Join a team",new Permission("gamelibrary.team.join"));
     }
 
     @Override

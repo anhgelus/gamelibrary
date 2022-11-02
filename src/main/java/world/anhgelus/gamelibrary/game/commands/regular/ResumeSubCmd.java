@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary.game.commands.regular;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class ResumeSubCmd extends Subcommand {
     public ResumeSubCmd(GameProperties gameProperties) {
-        super("resume", "Resume the game", gameProperties);
+        super("resume", "Resume the game", gameProperties, new Permission(gameProperties.name + ".game.resume"));
     }
 
     @Override

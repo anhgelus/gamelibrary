@@ -1,6 +1,7 @@
 package world.anhgelus.gamelibrary.game.commands.regular;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class PauseSubCmd extends Subcommand {
     public PauseSubCmd(GameProperties gameProperties) {
-        super("pause", "Pause the game", gameProperties);
+        super("pause", "Pause the game", gameProperties, new Permission(gameProperties.name + ".game.pause"));
     }
 
     @Override

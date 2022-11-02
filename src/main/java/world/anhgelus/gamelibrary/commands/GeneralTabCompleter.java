@@ -23,7 +23,7 @@ public abstract class GeneralTabCompleter implements TabCompleter {
 
         // Return list of subcommands
         if (args.length == 0) {
-            return subcommands.stream().map(Subcommand::getIdentifier).toList();
+            return subcommands.stream().map(Subcommand::identifier).toList();
         }
 
         for (Subcommand subcommand : subcommands) {
