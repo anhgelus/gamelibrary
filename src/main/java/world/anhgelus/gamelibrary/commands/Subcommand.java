@@ -77,4 +77,12 @@ public abstract class Subcommand {
         }
         return teams.stream().map(Team::getName).collect(Collectors.toList());
     }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
