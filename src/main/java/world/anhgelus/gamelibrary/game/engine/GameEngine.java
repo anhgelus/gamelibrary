@@ -40,7 +40,9 @@ public class GameEngine {
             SenderHelper.sendError(player, "The game is not not started.");
         }
         state = GameState.STARTING;
-        startConditions.onStart(game);
+        if (!startConditions.onStart(game)) {
+            return;
+        }
         SenderHelper.broadcastSuccess(MessageManager.parseMessage(message.getMessage("start"), player, game));
         SenderHelper.sendSuccess(player, MessageManager.parseMessage(message.getMessage("start_creator"),
                 player, game));

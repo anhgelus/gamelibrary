@@ -5,6 +5,7 @@ import world.anhgelus.gamelibrary.game.Game;
 public interface StartConditions {
     /**
      * Executed when the game is started
+     * @return True if the game can start, false otherwise
      */
-    void onStart(Game game);
+    boolean onStart(Game game);
 }
