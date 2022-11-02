@@ -89,4 +89,17 @@ public abstract class GeneralCommand implements CommandExecutor {
         }
         player.sendMessage(sb.toString().substring(0, sb.toString().length() - 2));
     }
+
+    /**
+     * Generate a generic tab completer with automatic completion
+     * @return The generic tab completer
+     */
+    public GeneralTabCompleter getGenericTabCompleter() {
+        return new GeneralTabCompleter(subcommands) {
+            @Override
+            protected List<String> complete(Player player, Subcommand subcommand, String[] args) {
+                return onSubcommand(player, subcommand, args);
+            }
+        };
+    }
 }
