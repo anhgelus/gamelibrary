@@ -1,6 +1,5 @@
 package world.anhgelus.gamelibrary.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,9 +38,13 @@ public abstract class GeneralCommand implements CommandExecutor {
         final String sub = args[0];
 
         for (Subcommand subcommand : subcommands) {
-            if (subcommand.getIdentifier().equals(sub)) {
+            if (subcommand.identifier.equals(sub)) {
+                if (!subcommand.permission.hasPermission(player)) {
+                    SenderHelper.sendError(player, "You don't have the permission to execute this command.");
+                    return true;
+                }
                 if (!subcommand.onCommand(player, args)) {
-                    SenderHelper.sendMessage(player, ChatColor.RED + "Error while executing the subcommand.");
+                    SenderHelper.sendError(player, "Error while executing the subcommand.");
                 }
                 return true;
             }
@@ -67,11 +70,11 @@ public abstract class GeneralCommand implements CommandExecutor {
         for (Subcommand subcommand : subcommands) {
             sb.append(SenderHelper.EXAMPLE)
                     .append("/game ")
-                    .append(subcommand.getIdentifier())
+                    .append(subcommand.identifier)
                     .append(SenderHelper.SUCCESS)
                     .append(" - ")
                     .append(SenderHelper.INFO)
-                    .append(subcommand.getDescription())
+                    .append(subcommand.description)
                     .append("\n");
         }
         player.sendMessage(sb.toString());

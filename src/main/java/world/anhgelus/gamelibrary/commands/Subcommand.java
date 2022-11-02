@@ -15,22 +15,30 @@ public abstract class Subcommand {
      * Identifier of the subcommand.
      * Example: hey for /game hey
      */
-    private final String identifier;
-    private final String description;
+    public final String identifier;
+    public final String description;
     protected final GameProperties properties;
+    public final Permission permission;
 
     public Subcommand(String identifier, String description, GameProperties properties) {
         this.identifier = identifier;
         this.description = description;
         this.properties = properties;
+        this.permission = new Permission("");
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public Subcommand(String identifier, String description, Permission permission) {
+        this.identifier = identifier;
+        this.description = description;
+        this.permission = permission;
+        this.properties = null;
     }
 
-    public String getDescription() {
-        return description;
+    public Subcommand(String identifier, String description, GameProperties properties, Permission permission) {
+        this.identifier = identifier;
+        this.description = description;
+        this.permission = permission;
+        this.properties = properties;
     }
 
     /**
