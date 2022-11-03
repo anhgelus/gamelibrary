@@ -66,7 +66,7 @@ public final class GameLibrary extends JavaPlugin {
     }
 
     private void generateConfigs() {
-        final Config messagesConfig = CONFIG_API.getConfig("messages.yml");
+        final Config messagesConfig = CONFIG_API.getConfig("messages");
         GAME_MESSAGES = MessageManager.setupGameMessage(messagesConfig);
     }
 
