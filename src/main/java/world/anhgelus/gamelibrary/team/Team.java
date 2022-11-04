@@ -8,18 +8,28 @@ import java.util.List;
 import java.util.UUID;
 
 public class Team {
-    private final String name;
-    private final UUID uuid;
-    private final String prefix;
-    private final ChatColor color;
-    private final List<Player> players;
+    public final String name;
+    public final UUID uuid;
+    public final String prefix;
+    public final ChatColor color;
+    public final List<Player> players;
 
     public Team(String name, String prefix, ChatColor color) {
         this.name = name;
-        this.uuid = UUID.fromString(name);
+        this.uuid = UUID.randomUUID();
         this.prefix = prefix;
         this.color = color;
         this.players = new ArrayList<>();
+        TeamManager.registerTeam(this);
+    }
+
+    public Team(String name, UUID uuid, String prefix, ChatColor color) {
+        this.name = name;
+        this.uuid = uuid;
+        this.prefix = prefix;
+        this.color = color;
+        this.players = new ArrayList<>();
+        TeamManager.registerTeam(this);
     }
 
     /**

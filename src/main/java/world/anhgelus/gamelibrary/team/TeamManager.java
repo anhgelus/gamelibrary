@@ -22,10 +22,26 @@ public class TeamManager {
      * @param prefix Prefix of the team
      * @param color Color of the team
      * @return The created team
+     * @deprecated Use the constructor of Team instead.
      */
     public static Team createTeam(String name, String prefix, ChatColor color) {
         final Team team = new Team(name, prefix, color);
-        TEAMS.add(team);
+        //TEAMS.add(team);
+        return team;
+    }
+
+    /**
+     * Create a new Team and register it automatically.
+     * @param name Name of the team
+     * @param uuid UUID of the team
+     * @param prefix Prefix of the team
+     * @param color Color of the team
+     * @return The created team
+     * @deprecated Use the constructor of Team instead.
+     */
+    public static Team createTeam(String name, UUID uuid, String prefix, ChatColor color) {
+        final Team team = new Team(name, uuid, prefix, color);
+        //TEAMS.add(team);
         return team;
     }
 
