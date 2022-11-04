@@ -36,14 +36,14 @@ public class MessageManager {
      * @return Parsed message
      */
     public static String parseMessage(String message, Player player, Game game) {
-        if (message.contains("%game_name%")) {
+        while (message.contains("%game_name%")) {
             message = message.replace("%game_name%", game.getName());
         }
-        if (message.contains("%player_name%")) {
-            message = message.replace("%player_name%", player.getName());
+        if (customMessageParsers == null) {
+            return message;
         }
         for (MessageParser parser : customMessageParsers) {
-            if (message.contains(parser.placeholder)) {
+            while (message.contains(parser.placeholder)) {
                 message = parser.parseMessage(message, player, game);
             }
         }
