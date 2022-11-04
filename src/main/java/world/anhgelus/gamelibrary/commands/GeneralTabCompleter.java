@@ -22,12 +22,12 @@ public abstract class GeneralTabCompleter implements TabCompleter {
         }
 
         // Return list of subcommands
-        if (args.length == 0) {
+        if (args.length == 1) {
             return subcommands.stream().map(Subcommand::getIdentifier).toList();
         }
 
         for (Subcommand subcommand : subcommands) {
-            if (subcommand.identifier.equals(args[0])) {
+            if (subcommand.identifier.equals(args[1])) {
                 return complete(player, subcommand, args);
             }
         }
