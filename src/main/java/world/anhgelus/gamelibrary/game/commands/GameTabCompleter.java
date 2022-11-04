@@ -6,6 +6,10 @@ import world.anhgelus.gamelibrary.commands.Subcommand;
 
 import java.util.List;
 
+/**
+ * @deprecated Use {@link world.anhgelus.gamelibrary.commands.GeneralCommand#getGenericTabCompleter()} instead
+ */
+@Deprecated
 public class GameTabCompleter extends GeneralTabCompleter {
     public GameTabCompleter(List<Subcommand> subcommands) {
         super(subcommands);

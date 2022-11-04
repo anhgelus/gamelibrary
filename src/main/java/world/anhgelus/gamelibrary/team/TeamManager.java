@@ -22,7 +22,7 @@ public class TeamManager {
      * @param prefix Prefix of the team
      * @param color Color of the team
      * @return The created team
-     * @deprecated Use the constructor of Team instead.
+     * @deprecated Use {@link world.anhgelus.gamelibrary.team.Team} instead.
      */
     @Deprecated
     public static Team createTeam(String name, String prefix, ChatColor color) {
@@ -38,7 +38,7 @@ public class TeamManager {
      * @param prefix Prefix of the team
      * @param color Color of the team
      * @return The created team
-     * @deprecated Use the constructor of Team instead.
+     * @deprecated Use {@link world.anhgelus.gamelibrary.team.Team} instead.
      */
     @Deprecated
     public static Team createTeam(String name, UUID uuid, String prefix, ChatColor color) {

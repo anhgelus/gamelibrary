@@ -31,8 +31,10 @@ public class GameCommandManager {
     /**
      * Register the class GameTabCompleter
      * You must use this if you want to use the tab completer for custom game commands!
+     * @deprecated Use {@link world.anhgelus.gamelibrary.game.commands.GameCommands#getGenericTabCompleter()} instead
      * @return GameTabCompleter to register in the main file
      */
+    @Deprecated
     public GameTabCompleter registerGameTabCompleter() {
         return new GameTabCompleter(subcommands);
     }
