@@ -24,6 +24,7 @@ public class TeamManager {
      * @return The created team
      * @deprecated Use the constructor of Team instead.
      */
+    @Deprecated
     public static Team createTeam(String name, String prefix, ChatColor color) {
         final Team team = new Team(name, prefix, color);
         //TEAMS.add(team);
@@ -39,6 +40,7 @@ public class TeamManager {
      * @return The created team
      * @deprecated Use the constructor of Team instead.
      */
+    @Deprecated
     public static Team createTeam(String name, UUID uuid, String prefix, ChatColor color) {
         final Team team = new Team(name, uuid, prefix, color);
         //TEAMS.add(team);
