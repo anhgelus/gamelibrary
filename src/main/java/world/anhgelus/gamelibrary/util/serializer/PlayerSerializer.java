@@ -29,7 +29,7 @@ public class PlayerSerializer {
             sb.append(playerToString(player));
             sb.append(",");
         }
-        return sb.toString().substring(0, sb.toString().length() - 1);
+        return sb.substring(0, sb.toString().length() - 1);
     }
 
     /**
@@ -39,12 +39,13 @@ public class PlayerSerializer {
      */
     @Nullable
     public static Player stringToPlayer(String string) {
+        UUID uuid;
         try {
-            final UUID uuid = UUID.fromString(string);
+            uuid = UUID.fromString(string);
         } catch (IllegalArgumentException e) {
             return null;
         }
-        return Bukkit.getPlayer(string);
+        return Bukkit.getPlayer(uuid);
     }
 
     /**

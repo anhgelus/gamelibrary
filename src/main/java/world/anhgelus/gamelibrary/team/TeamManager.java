@@ -118,7 +118,10 @@ public class TeamManager {
      */
     @Nullable
     public static Team getTeam(String name) {
-        return getTeam(UUID.fromString(name));
+        for (Team team : TEAMS) {
+            if (team.getName().equalsIgnoreCase(name)) return team;
+        }
+        return null;
     }
 
     /**
