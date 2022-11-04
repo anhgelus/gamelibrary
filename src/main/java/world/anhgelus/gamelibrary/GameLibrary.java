@@ -20,9 +20,7 @@ public final class GameLibrary extends JavaPlugin {
 
     private static GameLibrary INSTANCE;
     private static Message GAME_MESSAGES;
-
     private static ConfigAPI CONFIG_API;
-
     private List<Subcommand> teamSubcommands;
 
     @Override

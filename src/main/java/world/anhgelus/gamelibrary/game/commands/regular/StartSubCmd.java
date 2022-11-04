@@ -6,17 +6,24 @@ import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
+import world.anhgelus.gamelibrary.game.engine.GameState;
+import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;
 
 public class StartSubCmd extends Subcommand {
-    public StartSubCmd(GameProperties gameProperties) {
+    private final Game game;
+    public StartSubCmd(Game game, GameProperties gameProperties) {
         super("start", "Start the game", gameProperties, new Permission(gameProperties.name + ".game.start"));
+        this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        final Game game = new Game(GameLibrary.getInstance(), properties.name);
+        if (game.getEngine().getState() != GameState.NOT_STARTED) {
+            SenderHelper.sendWarning(player, "The game is already started");
+            return true;
+        }
         game.start(player);
         return true;
     }

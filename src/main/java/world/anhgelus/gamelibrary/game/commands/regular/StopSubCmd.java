@@ -1,26 +1,29 @@
 package world.anhgelus.gamelibrary.game.commands.regular;
 
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.GameLibrary;
 import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
+import world.anhgelus.gamelibrary.game.engine.GameState;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;
 
 public class StopSubCmd extends Subcommand {
-    public StopSubCmd(GameProperties gameProperties) {
+    private final Game game;
+
+    public StopSubCmd(Game game, GameProperties gameProperties) {
         super("stop", "Stop the game", gameProperties, new Permission(gameProperties.name + ".game.stop"));
+        this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        Game game;
-        try {
-            game = Game.getInstance();
-        } catch (NullPointerException e) {
-            SenderHelper.sendError(player, "Game is not started yet.");
+        GameLibrary.getInstance().getLogger().info(game.getEngine().getState().toString());
+        if (game.getEngine().getState() == GameState.NOT_STARTED) {
+            SenderHelper.sendWarning(player, "The game is not started");
             return true;
         }
         game.stop(player);

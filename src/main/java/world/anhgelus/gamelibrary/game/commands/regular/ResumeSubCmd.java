@@ -5,22 +5,23 @@ import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
+import world.anhgelus.gamelibrary.game.engine.GameState;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;
 
 public class ResumeSubCmd extends Subcommand {
-    public ResumeSubCmd(GameProperties gameProperties) {
+    private final Game game;
+
+    public ResumeSubCmd(Game game, GameProperties gameProperties) {
         super("resume", "Resume the game", gameProperties, new Permission(gameProperties.name + ".game.resume"));
+        this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        Game game;
-        try {
-            game = Game.getInstance();
-        } catch (NullPointerException e) {
-            SenderHelper.sendError(player, "Game is not started yet.");
+        if (game.getEngine().getState() != GameState.PAUSED) {
+            SenderHelper.sendWarning(player, "The game is not paused");
             return true;
         }
         game.resume(player);

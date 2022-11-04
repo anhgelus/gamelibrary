@@ -13,7 +13,6 @@ public class Game {
     private final GameProperties properties;
     private final GameCommandManager gameCommandManager;
 
-    private static Game INSTANCE;
 
     /**
      *
@@ -24,9 +23,8 @@ public class Game {
         this.main = main;
         this.name = name;
         this.engine = new GameEngine(this, GameLibrary.getGameMessages());
-        INSTANCE = this;
         this.properties = new GameProperties(name);
-        this.gameCommandManager = new GameCommandManager(properties);
+        this.gameCommandManager = new GameCommandManager(this, properties);
     }
 
     /**
@@ -67,13 +65,6 @@ public class Game {
 
     public GameEngine getEngine() {
         return engine;
-    }
-
-    public static Game getInstance() throws NullPointerException {
-        if (INSTANCE == null) {
-            throw new NullPointerException("Game is null!");
-        }
-        return INSTANCE;
     }
 
     public GameProperties getProperties() {
