@@ -14,8 +14,8 @@ public class TeamCommands extends GeneralCommand {
     }
 
     @Override
-    protected boolean command(Player player, String[] args) {
-        if (!onSubcommand(player, args)) {
+    protected boolean command(Player player, String label, String[] args) {
+        if (!onSubcommand(player, label, args)) {
             SenderHelper.sendWarning(player, "Unknown subcommand: " + args[0]);
         }
 

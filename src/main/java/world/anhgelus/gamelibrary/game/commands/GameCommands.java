@@ -13,8 +13,8 @@ public class GameCommands extends GeneralCommand {
     }
 
     @Override
-    public boolean command(Player player, String[] args) {
-        if (!onSubcommand(player, args)) {
+    public boolean command(Player player, String label, String[] args) {
+        if (!onSubcommand(player, label, args)) {
             SenderHelper.sendWarning(player, "Unknown subcommand: " + args[0]);
         }
 
