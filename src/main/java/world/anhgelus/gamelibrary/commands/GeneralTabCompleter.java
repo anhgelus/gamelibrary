@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import world.anhgelus.gamelibrary.GameLibrary;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,7 +28,7 @@ public abstract class GeneralTabCompleter implements TabCompleter {
         }
 
         for (Subcommand subcommand : subcommands) {
-            if (subcommand.identifier.equals(args[1])) {
+            if (subcommand.identifier.equals(args[0])) {
                 return complete(player, subcommand, args);
             }
         }
@@ -48,7 +49,7 @@ public abstract class GeneralTabCompleter implements TabCompleter {
     protected List<String> onSubcommand(Player player, Subcommand subcommand, String[] args) {
         for (Subcommand sub : subcommands) {
             if (sub.getIdentifier().equals(subcommand.getIdentifier())) {
-                sub.getTabCompleter(player, args);
+                return sub.getTabCompleter(player, args);
             }
         }
         return null;
