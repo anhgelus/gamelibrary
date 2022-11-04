@@ -1,14 +1,12 @@
 package world.anhgelus.gamelibrary;
 
 import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.messages.Message;
 import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.team.TeamCommands;
 import world.anhgelus.gamelibrary.team.TeamManager;
-import world.anhgelus.gamelibrary.team.TeamTabCompleter;
 import world.anhgelus.gamelibrary.team.subcommands.*;
 import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
@@ -73,8 +71,9 @@ public final class GameLibrary extends JavaPlugin {
     private void registerCommands() {
         final PluginCommand teamCommand = getCommand("team");
         if (teamCommand != null) {
-            teamCommand.setExecutor(new TeamCommands(teamSubcommands));
-            teamCommand.setTabCompleter(new TeamTabCompleter(teamSubcommands));
+            final TeamCommands teamCommands = new TeamCommands(teamSubcommands);
+            teamCommand.setExecutor(teamCommands);
+            teamCommand.setTabCompleter(teamCommands.getGenericTabCompleter());
         }
     }
 
