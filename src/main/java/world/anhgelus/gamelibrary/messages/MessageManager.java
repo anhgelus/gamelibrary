@@ -39,6 +39,9 @@ public class MessageManager {
         while (message.contains("%game_name%")) {
             message = message.replace("%game_name%", game.getName());
         }
+        while (message.contains("%player_name%")) {
+            message = message.replace("%player_name%", player.getName());
+        }
         if (customMessageParsers == null) {
             return message;
         }
