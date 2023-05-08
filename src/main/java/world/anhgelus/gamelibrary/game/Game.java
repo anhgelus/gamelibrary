@@ -5,9 +5,16 @@ import org.bukkit.plugin.Plugin;
 import world.anhgelus.gamelibrary.GameLibrary;
 import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.game.engine.GameEngine;
+import world.anhgelus.gamelibrary.game.event.GameEventHandler;
+import world.anhgelus.gamelibrary.game.event.events.AddPointGameEvent;
+import world.anhgelus.gamelibrary.game.event.events.RemovePointGameEvent;
 import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.team.Team;
 import world.anhgelus.gamelibrary.util.SenderHelper;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private final Plugin main;
@@ -15,6 +22,7 @@ public class Game {
     private final GameEngine engine;
     private final GameProperties properties;
     private final GameCommandManager gameCommandManager;
+    private final List<GameEventHandler> handlers = new ArrayList<>();
 
     /**
      *
@@ -27,6 +35,14 @@ public class Game {
         this.engine = new GameEngine(this, GameLibrary.getGameMessages());
         this.properties = new GameProperties(name);
         this.gameCommandManager = new GameCommandManager(this, properties);
+    }
+
+    /**
+     * Register a game event handler
+     * @param handler Handler to register
+     */
+    public void registerEventHandler(GameEventHandler handler) {
+        handlers.add(handler);
     }
 
     /**
@@ -61,18 +77,34 @@ public class Game {
         engine.end(player);
     }
 
-    public void addPointsToTeam(Team team, int points) {
+    /**
+     * Add points to a team
+     * @param team Team to add points
+     * @param points Points to add
+     * @param player Player who add points (can be null)
+     */
+    public void addPointsToTeam(Team team, int points, @Nullable Player player) {
         main.getLogger().info("A point has been added to team " + team.getName() + ".");
         team.addPoints(points);
+        final var event = new AddPointGameEvent(team, player, points);
+        handlers.forEach(handler -> handler.onAddPointGameEvent(event));
         SenderHelper.broadcastInfo(MessageManager.parseMessage(GameLibrary.getGameMessages().getMessage("point_to_team"),
-                this, team));
+                player,this, team));
     }
 
-    public void removePointsToTeam(Team team, int points) {
+    /**
+     * Remove points to a team
+     * @param team Team to remove points
+     * @param points Points to remove
+     * @param player Player who remove points (can be null)
+     */
+    public void removePointsToTeam(Team team, int points, @Nullable Player player) {
         main.getLogger().info("A point has been removed to team " + team.getName() + ".");
         team.addPoints(points);
+        final var event = new RemovePointGameEvent(team, player, points);
+        handlers.forEach(handler -> handler.onRemovePointGameEvent(event));
         SenderHelper.broadcastInfo(MessageManager.parseMessage(GameLibrary.getGameMessages().getMessage("remove_point_to_team"),
-                this, team));
+                player, this, team));
     }
 
     public String getName() {
