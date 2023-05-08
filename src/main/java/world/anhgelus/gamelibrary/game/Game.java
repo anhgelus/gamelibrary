@@ -5,6 +5,9 @@ import org.bukkit.plugin.Plugin;
 import world.anhgelus.gamelibrary.GameLibrary;
 import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.game.engine.GameEngine;
+import world.anhgelus.gamelibrary.messages.MessageManager;
+import world.anhgelus.gamelibrary.team.Team;
+import world.anhgelus.gamelibrary.util.SenderHelper;
 
 public class Game {
     private final Plugin main;
@@ -56,6 +59,20 @@ public class Game {
     public void stop(Player player) {
         main.getLogger().info("Game " + name + " has been stopped!");
         engine.end(player);
+    }
+
+    public void addPointsToTeam(Team team, int points) {
+        main.getLogger().info("A point has been added to team " + team.getName() + ".");
+        team.addPoints(points);
+        SenderHelper.broadcastInfo(MessageManager.parseMessage(GameLibrary.getGameMessages().getMessage("point_to_team"),
+                this, team));
+    }
+
+    public void removePointsToTeam(Team team, int points) {
+        main.getLogger().info("A point has been removed to team " + team.getName() + ".");
+        team.addPoints(points);
+        SenderHelper.broadcastInfo(MessageManager.parseMessage(GameLibrary.getGameMessages().getMessage("remove_point_to_team"),
+                this, team));
     }
 
     public String getName() {

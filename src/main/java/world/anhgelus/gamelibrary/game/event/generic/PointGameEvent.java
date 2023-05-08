@@ -20,6 +20,6 @@ public class PointGameEvent extends GameEvent {
 
     @Override
     public void cancel() throws UnsupportedOperationException {
-
+        team.removePoints(1);
     }
 }
