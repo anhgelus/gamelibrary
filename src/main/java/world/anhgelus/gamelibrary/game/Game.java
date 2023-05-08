@@ -6,6 +6,7 @@ import world.anhgelus.gamelibrary.GameLibrary;
 import world.anhgelus.gamelibrary.game.commands.GameCommandManager;
 import world.anhgelus.gamelibrary.event.events.*;
 import world.anhgelus.gamelibrary.event.*;
+import world.anhgelus.gamelibrary.game.engine.GameEngine;
 import world.anhgelus.gamelibrary.game.engine.GameState;
 import world.anhgelus.gamelibrary.messages.Message;
 import world.anhgelus.gamelibrary.messages.MessageManager;
@@ -178,6 +179,11 @@ public class Game {
 
     public GameCommandManager getCommandManager() {
         return gameCommandManager;
+    }
+
+    @Deprecated
+    public GameEngine getEngine() {
+        return null;
     }
 
     public GameState getState() {

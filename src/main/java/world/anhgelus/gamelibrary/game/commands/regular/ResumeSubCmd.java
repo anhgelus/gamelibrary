@@ -14,13 +14,13 @@ public class ResumeSubCmd extends Subcommand {
     private final Game game;
 
     public ResumeSubCmd(Game game, GameProperties gameProperties) {
-        super("resume", "Resume the game", gameProperties, new Permission(gameProperties.name + ".game.resume"));
+        super("resume", "Resume the game", gameProperties, new Permission(gameProperties.name() + ".game.resume"));
         this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        if (game.getEngine().getState() != GameState.PAUSED) {
+        if (game.getState() != GameState.PAUSED) {
             SenderHelper.sendWarning(player, "The game is not paused");
             return true;
         }

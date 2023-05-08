@@ -15,14 +15,13 @@ public class StopSubCmd extends Subcommand {
     private final Game game;
 
     public StopSubCmd(Game game, GameProperties gameProperties) {
-        super("stop", "Stop the game", gameProperties, new Permission(gameProperties.name + ".game.stop"));
+        super("stop", "Stop the game", gameProperties, new Permission(gameProperties.name() + ".game.stop"));
         this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        GameLibrary.getLOGGER().info(game.getEngine().getState().toString());
-        if (game.getEngine().getState() == GameState.NOT_STARTED) {
+        if (game.getState() == GameState.NOT_STARTED) {
             SenderHelper.sendWarning(player, "The game is not started");
             return true;
         }
