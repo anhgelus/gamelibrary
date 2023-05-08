@@ -49,7 +49,5 @@ processResources {
 }
 
 shadowJar {
-    relocate 'mysql.mysql-connector-java', 'world.anhgelus.jdbc.mysql-connector-java'
-    relocate 'org.postgresql.postgresql', 'world.anhgelus.jdbc.postgresql'
-    relocate 'org.mariadb.jdbc.mariadb-java-client', 'world.anhgelus.jdbc.mariadb'
+    exclude('org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT')
 }
