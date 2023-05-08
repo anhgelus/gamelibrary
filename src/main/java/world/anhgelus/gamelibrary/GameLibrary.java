@@ -8,12 +8,10 @@ import world.anhgelus.gamelibrary.messages.MessageManager;
 import world.anhgelus.gamelibrary.team.TeamCommands;
 import world.anhgelus.gamelibrary.team.TeamManager;
 import world.anhgelus.gamelibrary.team.subcommands.*;
-import world.anhgelus.gamelibrary.util.Vault;
 import world.anhgelus.gamelibrary.util.config.Config;
 import world.anhgelus.gamelibrary.util.config.ConfigAPI;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public final class GameLibrary extends JavaPlugin {
@@ -39,7 +37,6 @@ public final class GameLibrary extends JavaPlugin {
         teamSubcommands.add(new SaveSubCmd());
 
         this.generateConfigs();
-        this.generateVault();
         this.registerCommands();
 
         this.getLogger().info("GameLibrary has been loaded!");
@@ -73,9 +70,5 @@ public final class GameLibrary extends JavaPlugin {
             teamCommand.setExecutor(teamCommands);
             teamCommand.setTabCompleter(teamCommands.getGenericTabCompleter());
         }
-    }
-
-    private void generateVault() {
-        Vault.setVault(new HashMap<>());
     }
 }

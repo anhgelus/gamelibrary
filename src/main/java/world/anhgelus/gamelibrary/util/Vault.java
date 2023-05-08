@@ -1,23 +1,28 @@
 package world.anhgelus.gamelibrary.util;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class Vault {
-    private static Map<String, Object> vault;
+public class Vault<T> {
+    private Map<String, T> vault;
+
+    public Vault() {
+        this.vault = new HashMap<>();
+    }
 
     /**
      * Set the vault
      * @param vault The vault
      */
-    public static void setVault(Map<String, Object> vault) {
-        Vault.vault = vault;
+    public void setVault(Map<String, T> vault) {
+        this.vault = vault;
     }
 
     /**
      * Get the vault
      * @return The vault
      */
-    public static Map<String, Object> getVault() {
+    public Map<String, T> getVault() {
         return vault;
     }
 
@@ -26,7 +31,7 @@ public class Vault {
      * @param key The key of the vault
      * @return The value of the key
      */
-    public static Object get(String key) {
+    public T get(String key) {
         return vault.get(key);
     }
 
@@ -35,7 +40,7 @@ public class Vault {
      * @param key The key
      * @return True if it contains, else false
      */
-    public static boolean contains(String key) {
+    public boolean contains(String key) {
         return vault.containsKey(key);
     }
 
@@ -44,7 +49,7 @@ public class Vault {
      * @param key Key of the value
      * @param value Value of the key
      */
-    public static void put(String key, Object value) {
+    public void put(String key, T value) {
         vault.put(key, value);
     }
 }
