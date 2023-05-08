@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.game.event.generic;
+package world.anhgelus.gamelibrary.event.generic;
 
 public interface GenericPointGameEvent {
     int pointsBefore();

@@ -1,8 +1,8 @@
-package world.anhgelus.gamelibrary.game.event.events;
+package world.anhgelus.gamelibrary.event.events;
 
 import org.bukkit.entity.Player;
-import world.anhgelus.gamelibrary.game.event.GameEvent;
-import world.anhgelus.gamelibrary.game.event.generic.GenericPointGameEvent;
+import world.anhgelus.gamelibrary.event.GameEvent;
+import world.anhgelus.gamelibrary.event.generic.GenericPointGameEvent;
 import world.anhgelus.gamelibrary.team.Team;
 
 import javax.annotation.Nullable;

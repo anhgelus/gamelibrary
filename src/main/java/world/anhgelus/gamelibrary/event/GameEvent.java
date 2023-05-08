@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.game.event;
+package world.anhgelus.gamelibrary.event;
 
 public abstract class GameEvent {
     /**
