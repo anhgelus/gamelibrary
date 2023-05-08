@@ -14,12 +14,15 @@ public class Team {
     public final ChatColor color;
     public final List<Player> players;
 
+    protected int points;
+
     public Team(String name, String prefix, ChatColor color) {
         this.name = name;
         this.uuid = UUID.randomUUID();
         this.prefix = prefix;
         this.color = color;
         this.players = new ArrayList<>();
+        this.points = 0;
         TeamManager.registerTeam(this);
     }
 
@@ -29,6 +32,7 @@ public class Team {
         this.prefix = prefix;
         this.color = color;
         this.players = new ArrayList<>();
+        this.points = 0;
         TeamManager.registerTeam(this);
     }
 
@@ -92,7 +96,23 @@ public class Team {
         return uuid;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
+    public void removePoints(int points) {
+        this.points -= points;
+    }
+
     public String toString() {
-        return name;
+        return "TEAM " + name;
     }
 }

@@ -14,13 +14,13 @@ public class PauseSubCmd extends Subcommand {
     private final Game game;
 
     public PauseSubCmd(Game game, GameProperties gameProperties) {
-        super("pause", "Pause the game", gameProperties, new Permission(gameProperties.name + ".game.pause"));
+        super("pause", "Pause the game", gameProperties, new Permission(gameProperties.name() + ".game.pause"));
         this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        if (game.getEngine().getState() != GameState.RUNNING) {
+        if (game.getState() != GameState.RUNNING) {
             SenderHelper.sendWarning(player, "The game is not running");
             return true;
         }

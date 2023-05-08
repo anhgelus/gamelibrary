@@ -14,13 +14,13 @@ import java.util.List;
 public class StartSubCmd extends Subcommand {
     private final Game game;
     public StartSubCmd(Game game, GameProperties gameProperties) {
-        super("start", "Start the game", gameProperties, new Permission(gameProperties.name + ".game.start"));
+        super("start", "Start the game", gameProperties, new Permission(gameProperties.name() + ".game.start"));
         this.game = game;
     }
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        if (game.getEngine().getState() != GameState.NOT_STARTED) {
+        if (game.getState() != GameState.NOT_STARTED) {
             SenderHelper.sendWarning(player, "The game is already started");
             return true;
         }

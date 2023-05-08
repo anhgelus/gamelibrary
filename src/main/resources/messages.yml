@@ -1,8 +1,13 @@
-start: "&aGame &6%game_name% &ahas been started by &6%player_name%&a!"
-start_creator: "&aThe game &6%game_name% &ahas been started perfectly!"
-end: "&aGame &6%game_name% &ahas been stopped perfectly!"
-end_creator: "&aThe Game &6%game_name% &ahas been stopped perfectly!"
-pause: "&aGame &6%game_name% &ahas been paused by &6%player_name%&a!"
-pause_creator: "&aThe game &6%game_name% &ahas been paused perfectly!"
-resume: "&aThe game &6%game_name% &ahas been resumed by &6%player_name%&a!"
-resume_creator: "&aThe game &6%game_name% &ahas been resumed perfectly!"
+engine:
+  start: "&aGame &6%game_name% &ahas been started by &6%player_name%&a!"
+  start_creator: "&aThe game &6%game_name% &ahas been started perfectly!"
+  end: "&aGame &6%game_name% &ahas been stopped perfectly!"
+  end_creator: "&aThe Game &6%game_name% &ahas been stopped perfectly!"
+  pause: "&aGame &6%game_name% &ahas been paused by &6%player_name%&a!"
+  pause_creator: "&aThe game &6%game_name% &ahas been paused perfectly!"
+  resume: "&aThe game &6%game_name% &ahas been resumed by &6%player_name%&a!"
+  resume_creator: "&aThe game &6%game_name% &ahas been resumed perfectly!"
+
+game:
+  point_to_team: "The team &6%team_name% &ahas &6%team_points% &apoints!"
+  remove_point_to_team: "The team &6%team_name% &ahas &6%team_points% &apoints!"

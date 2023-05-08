@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'world.anhgelus'
-version = '0.5.5-beta.5'
+version = '0.6.0-alpha.1'
 
 repositories {
     mavenCentral()
@@ -12,17 +12,13 @@ repositories {
         name = 'spigotmc-repo'
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
-    maven {
-        name = 'sonatype'
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
 
     implementation 'mysql:mysql-connector-java:8.0.31'
-    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'org.postgresql:postgresql:42.5.1'
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.7'
     implementation 'redis.clients:jedis:4.3.1'
 }
@@ -53,7 +49,5 @@ processResources {
 }
 
 shadowJar {
-    relocate 'mysql.mysql-connector-java', 'world.anhgelus.jdbc.mysql-connector-java'
-    relocate 'org.postgresql.postgresql', 'world.anhgelus.jdbc.postgresql'
-    relocate 'org.mariadb.jdbc.mariadb-java-client', 'world.anhgelus.jdbc.mariadb'
+    exclude('org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT')
 }
