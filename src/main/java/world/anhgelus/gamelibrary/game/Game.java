@@ -13,7 +13,6 @@ public class Game {
     private final GameProperties properties;
     private final GameCommandManager gameCommandManager;
 
-
     /**
      *
      * @param main Main plugin
