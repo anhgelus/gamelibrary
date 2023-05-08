@@ -13,17 +13,20 @@ import world.anhgelus.gamelibrary.util.config.ConfigAPI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public final class GameLibrary extends JavaPlugin {
 
     private static GameLibrary INSTANCE;
     private static Message GAME_MESSAGES;
     private static ConfigAPI CONFIG_API;
+    private static Logger LOGGER;
     private List<Subcommand> teamSubcommands;
 
     @Override
     public void onEnable() {
         INSTANCE = this;
+        LOGGER = this.getLogger();
 
         CONFIG_API = new ConfigAPI(this);
 
@@ -39,16 +42,19 @@ public final class GameLibrary extends JavaPlugin {
         this.generateConfigs();
         this.registerCommands();
 
-        this.getLogger().info("GameLibrary has been loaded!");
+        LOGGER.info("GameLibrary has been loaded!");
     }
 
     @Override
     public void onDisable() {
-        this.getLogger().info("GameLibrary has been unloaded!");
+        LOGGER.info("GameLibrary has been unloaded!");
     }
 
     public static GameLibrary getInstance() {
         return INSTANCE;
+    }
+    public static Logger getLOGGER() {
+        return LOGGER;
     }
     public static Message getGameMessages() {
         return GAME_MESSAGES;

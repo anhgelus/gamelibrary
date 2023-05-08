@@ -21,7 +21,7 @@ public class StopSubCmd extends Subcommand {
 
     @Override
     public boolean onCommand(Player player, String[] args) {
-        GameLibrary.getInstance().getLogger().info(game.getEngine().getState().toString());
+        GameLibrary.getLOGGER().info(game.getEngine().getState().toString());
         if (game.getEngine().getState() == GameState.NOT_STARTED) {
             SenderHelper.sendWarning(player, "The game is not started");
             return true;

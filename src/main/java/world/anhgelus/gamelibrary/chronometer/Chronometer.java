@@ -17,7 +17,7 @@ public class Chronometer {
     private final Runnable onEnd;
     private BukkitTask task;
 
-    private static final Logger LOGGER = GameLibrary.getInstance().getLogger();
+    private static final Logger LOGGER = GameLibrary.getLOGGER();
 
     /**
      * Create a new Chronometer
