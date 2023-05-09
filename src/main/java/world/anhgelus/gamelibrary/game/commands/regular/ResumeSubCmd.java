@@ -5,7 +5,7 @@ import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.game.Game;
 import world.anhgelus.gamelibrary.game.GameProperties;
 import world.anhgelus.gamelibrary.commands.Subcommand;
-import world.anhgelus.gamelibrary.game.engine.GameState;
+import world.anhgelus.gamelibrary.game.GameState;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.List;

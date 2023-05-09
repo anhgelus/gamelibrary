@@ -1,4 +1,4 @@
-package world.anhgelus.gamelibrary.game.engine;
+package world.anhgelus.gamelibrary.game;
 
 public enum GameState {
     STARTING("Starting"),
