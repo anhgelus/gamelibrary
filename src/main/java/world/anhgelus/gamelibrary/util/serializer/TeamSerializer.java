@@ -31,9 +31,10 @@ public class TeamSerializer {
      * Load a team from a config
      * @param config Config to load the team from
      * @param uuid UUID of the team to load
+     * @param propertiesClass Properties class for teams
      * @return Team loaded from the config
      */
-    public static Team teamFromConfig(Config config, UUID uuid) {
+    public static Team teamFromConfig(Config config, UUID uuid, String propertiesClass) {
         final FileConfiguration section = config.get();
         final String key = "teams" + "." + uuid.toString() + ".";
         final String name = section.getString(key + "name");
@@ -42,7 +43,7 @@ public class TeamSerializer {
         final String unformattedPlayers = section.getString(key + "players");
         if (unformattedPlayers == null) return null;
         final List<Player> players = PlayerSerializer.stringToPlayers(unformattedPlayers);
-        final Team team = new Team(name, prefix, color);
+        final Team team = new Team(name, prefix, color, propertiesClass);
         team.addPlayers(players);
         return team;
     }

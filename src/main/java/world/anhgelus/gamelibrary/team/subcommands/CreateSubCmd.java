@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import world.anhgelus.gamelibrary.commands.Permission;
 import world.anhgelus.gamelibrary.commands.Subcommand;
 import world.anhgelus.gamelibrary.team.Team;
-import world.anhgelus.gamelibrary.team.TeamManager;
+import world.anhgelus.gamelibrary.team.TeamCommands;
 import world.anhgelus.gamelibrary.util.SenderHelper;
 
 import java.util.Arrays;
@@ -26,7 +26,11 @@ public class CreateSubCmd extends Subcommand {
         final String teamName = args[1];
         final String prefix = args[2];
         final ChatColor color = ChatColor.valueOf(args[3]);
-        new Team(teamName, prefix, color);
+        if (!(command instanceof TeamCommands)) {
+            throw new IllegalArgumentException("Command is not an instance of TeamCommands");
+        }
+        final TeamCommands commands = (TeamCommands) this.command;
+        new Team(teamName, prefix, color, commands.propertiesClass);
         SenderHelper.sendSuccess(player, "Team " + teamName + " created");
         return true;
     }

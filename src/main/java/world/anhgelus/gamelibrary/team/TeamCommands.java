@@ -9,8 +9,15 @@ import java.util.List;
 
 public class TeamCommands extends GeneralCommand {
 
-    public TeamCommands(List<Subcommand> subcommands) {
+    public final String propertiesClass;
+
+    /**
+     * @param subcommands Subcommands of the command
+     * @param propertiesClass The property class of the teams
+     */
+    public TeamCommands(List<Subcommand> subcommands, String propertiesClass) {
         super(subcommands);
+        this.propertiesClass = propertiesClass;
     }
 
     @Override
