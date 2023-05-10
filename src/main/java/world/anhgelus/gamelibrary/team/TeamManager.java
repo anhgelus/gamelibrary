@@ -1,6 +1,5 @@
 package world.anhgelus.gamelibrary.team;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -15,37 +14,7 @@ import java.util.UUID;
 public class TeamManager {
     private final static List<Team> TEAMS = new ArrayList<>();
     public static Config CONFIG;
-
-    /**
-     * Create a new Team and register it automatically.
-     * @param name Name of the team
-     * @param prefix Prefix of the team
-     * @param color Color of the team
-     * @return The created team
-     * @deprecated Use {@link world.anhgelus.gamelibrary.team.Team} instead.
-     */
-    @Deprecated
-    public static Team createTeam(String name, String prefix, ChatColor color) {
-        final Team team = new Team(name, prefix, color);
-        //TEAMS.add(team);
-        return team;
-    }
-
-    /**
-     * Create a new Team and register it automatically.
-     * @param name Name of the team
-     * @param uuid UUID of the team
-     * @param prefix Prefix of the team
-     * @param color Color of the team
-     * @return The created team
-     * @deprecated Use {@link world.anhgelus.gamelibrary.team.Team} instead.
-     */
-    @Deprecated
-    public static Team createTeam(String name, UUID uuid, String prefix, ChatColor color) {
-        final Team team = new Team(name, uuid, prefix, color);
-        //TEAMS.add(team);
-        return team;
-    }
+    public static TeamProperties TYPE;
 
     /**
      * Save a team in the config file

@@ -3,6 +3,7 @@ package world.anhgelus.gamelibrary.team;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,27 +14,34 @@ public class Team {
     public final String prefix;
     public final ChatColor color;
     public final List<Player> players;
+    public final TeamProperties properties;
 
-    protected int points;
-
-    public Team(String name, String prefix, ChatColor color) {
+    public Team(String name, String prefix, ChatColor color, String propertiesClass) {
         this.name = name;
         this.uuid = UUID.randomUUID();
         this.prefix = prefix;
         this.color = color;
         this.players = new ArrayList<>();
-        this.points = 0;
+        properties = setupProperties(propertiesClass);
         TeamManager.registerTeam(this);
     }
 
-    public Team(String name, UUID uuid, String prefix, ChatColor color) {
+    public Team(String name, UUID uuid, String prefix, ChatColor color, String propertiesClass) {
         this.name = name;
         this.uuid = uuid;
         this.prefix = prefix;
         this.color = color;
         this.players = new ArrayList<>();
-        this.points = 0;
+        properties = setupProperties(propertiesClass);
         TeamManager.registerTeam(this);
+    }
+
+    private TeamProperties setupProperties(String propertiesClass) {
+        try {
+            return (TeamProperties) Class.forName(propertiesClass).getConstructor().newInstance(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -97,19 +105,19 @@ public class Team {
     }
 
     public int getPoints() {
-        return points;
+        return properties.getPoints();
     }
 
     public void setPoints(int points) {
-        this.points = points;
+        properties.setPoints(points);
     }
 
     public void addPoints(int points) {
-        this.points += points;
+        properties.addPoints(points);
     }
 
     public void removePoints(int points) {
-        this.points -= points;
+        properties.removePoints(points);
     }
 
     public String toString() {
