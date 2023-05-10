@@ -19,6 +19,7 @@ public abstract class Subcommand {
     public final String description;
     protected final GameProperties properties;
     public final Permission permission;
+    protected GeneralCommand command;
 
     public Subcommand(String identifier, String description, GameProperties properties) {
         this.identifier = identifier;
@@ -39,6 +40,14 @@ public abstract class Subcommand {
         this.description = description;
         this.permission = permission;
         this.properties = properties;
+    }
+
+    public GeneralCommand getCommand() {
+        return command;
+    }
+
+    public void setCommand(GeneralCommand command) {
+        this.command = command;
     }
 
     /**

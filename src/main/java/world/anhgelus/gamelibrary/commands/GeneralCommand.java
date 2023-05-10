@@ -14,6 +14,7 @@ public abstract class GeneralCommand implements CommandExecutor {
     protected final List<Subcommand> subcommands;
 
     public GeneralCommand(List<Subcommand> subcommands) {
+        subcommands.forEach((subcommand -> subcommand.setCommand(this)));
         this.subcommands = subcommands;
     }
 
